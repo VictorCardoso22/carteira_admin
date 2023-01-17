@@ -1,5 +1,6 @@
 import 'package:admin/components/menu_sidebar.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
+import 'package:admin/pages/topo_page/topo_page.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -38,7 +39,7 @@ class _AdminPageState extends State<AdminPage> {
               color: kBackgroundLightColor,
               child: Column(
                 children: [
-                  // Topo(),
+                  TopoPage(),
                   // MENU LATERAL
                   Flexible(
                     child: Row(
