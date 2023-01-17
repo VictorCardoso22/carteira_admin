@@ -1,4 +1,5 @@
 import 'package:admin/pages/admin_page_viewmodel.dart';
+import 'package:admin/pages/topo_page/topo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -107,7 +108,12 @@ class Screens extends StatelessWidget {
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
-        return adminPageViewlModel.getPageByIndex(controller.selectedIndex);
+        return Column(
+          children: [
+            TopoPage(),
+            adminPageViewlModel.getPageByIndex(controller.selectedIndex)
+          ],
+        );
       },
     );
   }
