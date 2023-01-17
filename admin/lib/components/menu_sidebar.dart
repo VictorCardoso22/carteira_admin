@@ -110,7 +110,12 @@ class Screens extends StatelessWidget {
       builder: (context, child) {
         return Column(
           children: [
-            TopoPage(),
+            TopoPage(
+                nome: 'Fulano de tal da Silva',
+                imagemPerfil: Image.asset(
+                  'assets/perfil.jpg',
+                )),
+            const SizedBox(height: 22),
             adminPageViewlModel.getPageByIndex(controller.selectedIndex)
           ],
         );

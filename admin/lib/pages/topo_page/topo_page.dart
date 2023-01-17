@@ -2,9 +2,10 @@ import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 
 class TopoPage extends StatefulWidget {
-  String? titulo;
+  Image? imagemPerfil;
+  String? nome;
 
-  TopoPage({Key? key, this.titulo}) : super(key: key);
+  TopoPage({Key? key, this.imagemPerfil, this.nome}) : super(key: key);
 
   @override
   State<TopoPage> createState() => _TopoPageState();
@@ -29,8 +30,15 @@ class _TopoPageState extends State<TopoPage> {
           _buildIcon(
               heightBox: 40, icon: Icons.notifications_none, onPressed: () {}),
           const SizedBox(width: 10),
+          Container(
+            height: 20,
+            width: 2,
+            color: kPrimaryContainerColor,
+          ),
+          const SizedBox(width: 30),
           _buildPersonalInfo(
-            name: 'Fulano de tal',
+            name: widget.nome,
+            imagePerfil: widget.imagemPerfil,
           )
         ],
       ),
@@ -55,7 +63,7 @@ class _TopoPageState extends State<TopoPage> {
   }
 
   Widget _buildPersonalInfo({
-    String? imagePerfil,
+    Image? imagePerfil,
     String? name,
   }) {
     String? _name = name;
@@ -66,9 +74,10 @@ class _TopoPageState extends State<TopoPage> {
             child: Text(
           _name!,
         )),
-        const SizedBox(width: 12),
+        const SizedBox(width: 18),
         CircleAvatar(
-          maxRadius: 35,
+          maxRadius: 30,
+          child: imagePerfil!,
         ),
       ],
     );
