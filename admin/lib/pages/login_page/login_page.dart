@@ -76,38 +76,9 @@ class LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: kMarginDefault),
                       const SizedBox(height: 20),
-                      const Center(
-                        child: SizedBox(
-                          width: 328,
-                          child: TextField(
-                            // controller: usernameController ,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelText: 'Usuario',
-                            ),
-                          ),
-                        ),
-                      ),
+                      RoundedInputField(labelText: 'Email'),
                       const SizedBox(height: 16),
-                      const Center(
-                        child: SizedBox(
-                          width: 328,
-                          child: TextField(
-                            obscureText: true,
-                            // controller: passwordController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelText: 'Senha',
-                            ),
-                          ),
-                        ),
-                      ),
+                      RoundedPasswordField(),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(

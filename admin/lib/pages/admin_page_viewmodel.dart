@@ -1,3 +1,4 @@
+import 'package:admin/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:stacked/stacked.dart';
@@ -13,7 +14,7 @@ class AdminPageViewlModel extends BaseViewModel {
   getPageByIndex(int index) {
     switch (index) {
       case 0:
-        return Text('Home');
+        return HomePage();
       case 1:
         return Text('Home 2');
         ;
