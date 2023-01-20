@@ -37,6 +37,7 @@ dependencies:
   cpf_cnpj_validator: ^2.0.0
   stacked: ^2.2.8
   sidebarx: ^0.14.0
+  gallery_image_viewer: ^1.2.0
 
 dev_dependencies:
   flutter_test:

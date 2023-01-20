@@ -1,4 +1,6 @@
 import 'package:admin/pages/admin_page.dart';
+import 'package:admin/pages/admin_page_viewmodel.dart';
+import 'package:admin/pages/carterias/carteiras_page.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +9,12 @@ import 'package:get/get.dart';
 import 'pages/login_page/login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  AdminPageViewlModel? adminPageViewlModel;
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -22,6 +25,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (_) => LoginPage(),
         '/home': (_) => AdminPage(),
+        '/carteiras': (_) =>
+            CarteirasPage(adminPageViewlModel: adminPageViewlModel!),
       },
       scrollBehavior: MaterialScrollBehavior().copyWith(
         dragDevices: {

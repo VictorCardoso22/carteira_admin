@@ -1,4 +1,6 @@
+import 'package:admin/pages/carterias/carteiras_page.dart';
 import 'package:admin/pages/home_page/home_page.dart';
+import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:stacked/stacked.dart';
@@ -14,24 +16,18 @@ class AdminPageViewlModel extends BaseViewModel {
   getPageByIndex(int index) {
     switch (index) {
       case 0:
-        return HomePage();
+        return HomePage(adminPageViewlModel: this);
       case 1:
-        return Text('Home 2');
-        ;
+        return CarteirasPage(adminPageViewlModel: this);
+
       case 2:
-        return Text('Home 3');
-        ;
+        return Text('Config');
 
       case 3:
-        return Text('Home 4');
-        ;
+        return Text('Sair');
 
-      // case 4:
-      //   Future.delayed(Duration.zero, () {
-      //     // ?????????????????????????????????????????????? Funciona nao sei porque
-      //     logout(baseContext);
-      //   });
-      //   return Container();
+      case 4:
+        return registroCarteiraPage();
 
       default:
         return const Text('Not found page');

@@ -1,47 +1,30 @@
-import 'package:admin/components/custom_card.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/tabela_carteiras/tabela_carteiras_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class HomePage extends StatefulWidget {
+class CarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
-  HomePage({Key? key, required this.adminPageViewlModel}) : super(key: key);
+  CarteirasPage({Key? key, required this.adminPageViewlModel})
+      : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CarteirasPage> createState() => _CarteirasPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CarteirasPageState extends State<CarteirasPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Dashboard',
+          'Carteiras cadastradas',
           style: TextStyle(
               fontSize: 24,
               color: Color(0xFF252733),
               fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 55),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomCard(
-              titulo: 'Carteiras cadastradas',
-              valor: '60',
-            ),
-            CustomCard(
-              titulo: 'Carteiras aprovadas',
-              valor: '16',
-            ),
-            CustomCard(
-              titulo: 'Carteiras pendentes',
-              valor: '43',
-            ),
-          ],
         ),
         const SizedBox(height: 55),
         Container(
@@ -90,25 +73,6 @@ class _HomePageState extends State<HomePage> {
                 TabelaCarteirasPage(
                     adminPageViewlModel: widget.adminPageViewlModel),
                 const Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 18.0, vertical: 10),
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      TextButton(
-                          onPressed: () {
-                            // Get.toNamed('/carteiras');
-                            widget.adminPageViewlModel.goToTab(1);
-                          },
-                          child: const Text(
-                            'Ver Todos',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          )),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
