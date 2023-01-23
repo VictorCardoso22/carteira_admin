@@ -87,8 +87,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const Divider(),
                 // table(),
-                TabelaCarteirasPage(
-                    adminPageViewlModel: widget.adminPageViewlModel),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: TabelaCarteirasPage(
+                      adminPageViewlModel: widget.adminPageViewlModel),
+                ),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.symmetric(

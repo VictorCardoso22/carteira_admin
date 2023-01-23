@@ -70,8 +70,11 @@ class _CarteirasPageState extends State<CarteirasPage> {
                 ),
                 const Divider(),
                 // table(),
-                TabelaCarteirasPage(
-                    adminPageViewlModel: widget.adminPageViewlModel),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: TabelaCarteirasPage(
+                      adminPageViewlModel: widget.adminPageViewlModel),
+                ),
                 const Divider(),
               ],
             ),
