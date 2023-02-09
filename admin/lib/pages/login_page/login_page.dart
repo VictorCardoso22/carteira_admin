@@ -3,8 +3,10 @@ import 'package:admin/components/rounded_input_field.dart';
 import 'package:admin/components/rounded_password_field.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:toast/toast.dart';
 
 import '../../../ui/dimens.dart';
 
@@ -18,10 +20,11 @@ class LoginPage extends StatefulWidget {
 
 /// State da tela de login
 class LoginPageState extends State<LoginPage> {
-  bool readOnly = false;
+  bool isLoading = false;
 
-  final GlobalKey<FormState> _formKeyLogin = new GlobalKey<FormState>();
 
+  TextEditingController usernameController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   // @override
   // void initState() {
   //   super.initState();
@@ -76,9 +79,9 @@ class LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: kMarginDefault),
                       const SizedBox(height: 20),
-                      RoundedInputField(labelText: 'Email'),
+                      RoundedInputField(labelText: 'Email', controller: usernameController,),
                       const SizedBox(height: 16),
-                      RoundedPasswordField(),
+                      RoundedPasswordField(controller: passwordController,),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -88,10 +91,10 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(height: kMarginHalf),
-                      CustomPrimaryButton(
+                      isLoading? const Center(child: CircularProgressIndicator(),) : CustomPrimaryButton(
                         onPressed: () {
-                          // trySignin();
-                          Get.toNamed('/home');
+                           trySignin();
+
                         },
                         titulo: 'Entrar',
                       ),
@@ -112,5 +115,40 @@ class LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  trySignin() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+          email: usernameController.text.trimRight(),
+          password: passwordController.text)
+          .then((value) {
+        // setPreferencesCredentials(widget.usernameController.text.trimRight(), widget.passwordController.text);
+        Get.toNamed('/home');
+      });
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      if (e.code == 'user-not-found') {
+        toastAviso("Usuário ou senha incorretos", Colors.red, context);
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        toastAviso("Usuário ou senha incorretos", Colors.red, context);
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
+
+  toastAviso(String aviso, Color color, BuildContext context) {
+    Toast.show(aviso,
+        duration: 6,
+        gravity: Toast.top,
+        backgroundRadius: 80,
+        backgroundColor: color);
   }
 }

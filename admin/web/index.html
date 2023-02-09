@@ -40,6 +40,23 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <!-- Firebase Configuration -->
+  <script>
+    var firebaseConfig = {
+    apiKey: "AIzaSyBzl9nso9epQk2pC9nPto8QhykzT2vkwrA",
+    authDomain: "carteiraestudante-e7fcd.firebaseapp.com",
+    databaseURL: "https://carteiraestudante-e7fcd.firebaseio.com",
+    projectId: "carteiraestudante-e7fcd",
+    storageBucket: "carteiraestudante-e7fcd.appspot.com",
+    messagingSenderId: "320079447747",
+    appId: "1:320079447747:web:febcb05ca076a35f5d8476",
+    measurementId: "G-TL21KBH5FG"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js

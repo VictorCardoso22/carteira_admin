@@ -38,6 +38,11 @@ dependencies:
   stacked: ^2.2.8
   sidebarx: ^0.14.0
   gallery_image_viewer: ^1.2.0
+  firebase_core: ^2.5.0
+  firebase_auth: ^4.2.5
+  firebase_storage: ^11.0.10
+  cloud_firestore: ^4.3.1
+  toast: ^0.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "320079447747",
+    "project_id": "carteiraestudante-e7fcd",
+    "storage_bucket": "carteiraestudante-e7fcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320079447747:android:78553183bbce04c55d8476",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320079447747-1gcfluku9tebrms6168qpuaepp3ejrsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVCYFrgeZjIgW9FtCcc-QHW8-vWUvmNhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320079447747-1gcfluku9tebrms6168qpuaepp3ejrsj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320079447747-c7vlsedhprp3oiqi3ch1gja9644do47i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carteira"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320079447747:android:ba8430b199b26f725d8476",
+        "android_client_info": {
+          "package_name": "com.example.carteira"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320079447747-1gcfluku9tebrms6168qpuaepp3ejrsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVCYFrgeZjIgW9FtCcc-QHW8-vWUvmNhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320079447747-1gcfluku9tebrms6168qpuaepp3ejrsj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320079447747-c7vlsedhprp3oiqi3ch1gja9644do47i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carteira"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
