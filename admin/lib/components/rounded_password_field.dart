@@ -4,25 +4,28 @@ import 'package:flutter/material.dart';
 class RoundedPasswordField extends StatelessWidget {
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
-
+  void Function()? onEditingComplete;
   final bool readOnly;
   //final ValueChanged<String> onChanged;
-  const RoundedPasswordField({
+   RoundedPasswordField({
     key,
     this.readOnly = false,
     this.controller,
     this.validator,
+    this.onEditingComplete
     //this.onChanged,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofillHints: [AutofillHints.password],
       obscureText: true,
       //onChanged: onChanged,
       validator: validator,
       controller: controller,
       readOnly: readOnly,
+      onEditingComplete: onEditingComplete,
       // onTap: () {
       //   if (readOnly == true) {
       //     toastAviso("Desabilitar logar com FaceId ou Biometria",
@@ -30,7 +33,7 @@ class RoundedPasswordField extends StatelessWidget {
       //   }
       // },
       cursorColor: kPrimaryDarkColor,
-      decoration: new InputDecoration(
+      decoration: InputDecoration(
         labelText: 'Senha',
         border: OutlineInputBorder(),
         filled: true,

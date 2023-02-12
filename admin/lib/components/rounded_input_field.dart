@@ -1,5 +1,6 @@
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RoundedInputField extends StatelessWidget {
   final String? labelText;
@@ -25,6 +26,10 @@ class RoundedInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofillHints: const <String>[
+        AutofillHints.username,
+        AutofillHints.email
+        ],
       //onChanged: onChanged,
       readOnly: readOnly,
       // onTap: () {
@@ -37,8 +42,9 @@ class RoundedInputField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       cursorColor: kPrimaryDarkColor,
+      onEditingComplete: (){},
 
-      decoration: new InputDecoration(
+      decoration:  InputDecoration(
         labelText: labelText,
         border: OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
