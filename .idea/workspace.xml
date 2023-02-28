@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c1871ea-ec95-4103-96df-b939bfde4ab3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/lib/components/rounded_input_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/components/rounded_input_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/lib/components/rounded_password_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/components/rounded_password_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/lib/pages/admin_page_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/pages/admin_page_viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/lib/pages/login_page/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/pages/login_page/login_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/admin/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/admin/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin/web/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="4c1871ea-ec95-4103-96df-b939bfde4ab3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +34,10 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../siscalePmal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -70,5 +62,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
