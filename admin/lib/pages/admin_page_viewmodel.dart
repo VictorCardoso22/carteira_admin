@@ -1,4 +1,5 @@
 import 'package:admin/pages/carterias/carteiras_page.dart';
+import 'package:admin/pages/dados/dados_page.dart';
 import 'package:admin/pages/home_page/home_page.dart';
 import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
 import 'package:flutter/material.dart';
@@ -20,16 +21,13 @@ class AdminPageViewlModel extends BaseViewModel {
         return HomePage(adminPageViewlModel: this);
       case 1:
         return CarteirasPage(adminPageViewlModel: this);
-
       case 2:
-        return Text('Config');
-
+        return const DadosPage();
       case 3:
         Future.delayed(Duration.zero, () {
           Get.offAllNamed("/login");
         });
         return Container();
-
       case 4:
         return registroCarteiraPage();
 

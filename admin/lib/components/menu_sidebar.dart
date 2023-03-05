@@ -76,8 +76,8 @@ class MenuSidebarX extends StatelessWidget {
           label: 'Cadastros',
         ),
         const SidebarXItem(
-          icon: Icons.settings,
-          label: 'Configurações',
+          icon: Icons.add_to_photos,
+          label: 'Novo',
         ),
         SidebarXItem(
           icon: Icons.logout_rounded,

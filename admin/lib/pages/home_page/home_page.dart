@@ -1,4 +1,5 @@
 import 'package:admin/components/custom_card.dart';
+import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/tabela_carteiras/tabela_carteiras_page.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,16 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        const SizedBox(height: 55),
+        const SizedBox(height: 42),
+        Align(
+          alignment: Alignment.topRight,
+          child: CustomPrimaryButton(
+              titulo: 'Cadastrar nova carteirinha',
+              onPressed: () => widget.adminPageViewlModel.goToTab(2)
+              // Get.toNamed('/cadastro'),
+              ),
+        ),
+        const SizedBox(height: 42),
         Container(
           child: Card(
             color: Colors.white,
