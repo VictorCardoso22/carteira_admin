@@ -3,6 +3,7 @@ import 'package:admin/pages/admin_page.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/carterias/carteiras_page.dart';
 import 'package:admin/pages/dados/dados_page.dart';
+import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
@@ -35,7 +36,9 @@ class MyApp extends StatelessWidget {
         '/home': (_) => AdminPage(),
         '/carteiras': (_) =>
             CarteirasPage(adminPageViewlModel: adminPageViewlModel!),
-        '/cadastro': (_) => const DadosPage(),
+        '/cadastro': (_) =>  DadosPage(),
+        '/registro': (_) =>  RegistroCarteiraPage(),
+
       },
       scrollBehavior: MaterialScrollBehavior().copyWith(
         dragDevices: {

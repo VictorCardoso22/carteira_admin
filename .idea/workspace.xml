@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c1871ea-ec95-4103-96df-b939bfde4ab3" name="Changes" comment="" />
+    <list default="true" id="4c1871ea-ec95-4103-96df-b939bfde4ab3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/carteira_admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/carteira_admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/lib/pages/admin_page_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/pages/admin_page_viewmodel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/lib/pages/registro_carteira/registro_carteira_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/pages/registro_carteira/registro_carteira_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/lib/pages/tabela_carteiras/tabela_carteiras_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/admin/lib/pages/tabela_carteiras/tabela_carteiras_page.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,6 +69,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

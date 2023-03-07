@@ -35,7 +35,7 @@ class AdminPageViewlModel extends BaseViewModel {
 
       // -- Esse aqui esta escondido. Pagina que mostra as informacoes do aluno
       case 4:
-        return registroCarteiraPage();
+        return RegistroCarteiraPage();
 
       default:
         return const Text('Not found page');

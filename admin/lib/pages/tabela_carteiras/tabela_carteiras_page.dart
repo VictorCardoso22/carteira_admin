@@ -1,11 +1,13 @@
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
+import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 class TabelaCarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
+  
 
   TabelaCarteirasPage({Key? key, required this.adminPageViewlModel})
       : super(key: key);
@@ -91,9 +93,10 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
   createDataRowItem({nome, turno, instituicao, situacao, id}) {
     return DataRow(
       cells: <DataCell>[
-        DataCell(Text('$nome',), onTap: () { widget.adminPageViewlModel.controller.selectIndex(4);}),
-        DataCell(Text('$turno'), onTap: () {widget.adminPageViewlModel.controller.selectIndex(4);}),
-        DataCell(Text('$instituicao'), onTap: () {widget.adminPageViewlModel.controller.selectIndex(4);}),
+
+        DataCell(Text('$nome',), onTap: () {Get.to(RegistroCarteiraPage(user: listOfAlunos[id],));}),
+        DataCell(Text('$turno'), onTap: () {Get.to(RegistroCarteiraPage(user: listOfAlunos[id],));}),
+        DataCell(Text('$instituicao'), onTap: () {Get.to(RegistroCarteiraPage(user: listOfAlunos[id],));}),
         DataCell(
           Container(
             width: 100,
