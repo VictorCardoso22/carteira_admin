@@ -83,7 +83,6 @@ class MenuSidebarX extends StatelessWidget {
           icon: Icons.logout_rounded,
           label: 'Sair do sistema',
           onTap: () {
-            // TODO Fazer funcao de sair do sistema
             debugPrint('Sair');
           },
         ),

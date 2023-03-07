@@ -47,6 +47,8 @@ class _AdminPageState extends State<AdminPage> {
                         // SIDEBAR
                         if (!isSmallScreen)
                           MenuSidebarX(controller: model.controller),
+                        //SIDEBAR
+                        // Container das telas
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.symmetric(
@@ -58,6 +60,7 @@ class _AdminPageState extends State<AdminPage> {
                             ),
                           ),
                         ),
+                        //Container das telas
                       ],
                     ),
                   )

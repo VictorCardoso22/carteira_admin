@@ -142,7 +142,7 @@ class LoginPageState extends State<LoginPage> {
           password: passwordController.text)
           .then((value) {
         // setPreferencesCredentials(widget.usernameController.text.trimRight(), widget.passwordController.text);
-        Get.toNamed('/home');
+        Get.offAndToNamed ('/home');
       });
     } on FirebaseAuthException catch (e) {
       setState(() {

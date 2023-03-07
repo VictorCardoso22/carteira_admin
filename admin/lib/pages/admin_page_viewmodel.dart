@@ -16,8 +16,11 @@ class AdminPageViewlModel extends BaseViewModel {
   AdminPageViewlModel(BuildContext this.baseContext);
 
   getPageByIndex(int index) {
+    debugPrint("$index");
     switch (index) {
+
       case 0:
+
         return HomePage(adminPageViewlModel: this);
       case 1:
         return CarteirasPage(adminPageViewlModel: this);
@@ -28,6 +31,9 @@ class AdminPageViewlModel extends BaseViewModel {
           Get.offAllNamed("/login");
         });
         return Container();
+
+
+      // -- Esse aqui esta escondido. Pagina que mostra as informacoes do aluno
       case 4:
         return registroCarteiraPage();
 
