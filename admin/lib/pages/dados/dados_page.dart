@@ -109,10 +109,12 @@ class _DadosPageState extends State<DadosPage> {
                         controlsBuilder: (context, details) => Column(
                           children: [
                             CustomPrimaryButton(
-                                titulo: _index == getSteps().length - 1
-                                    ? 'Enviar'
-                                    : 'Avançar',
-                                onPressed: details.onStepContinue!),
+                              titulo: _index == getSteps().length - 1
+                                  ? 'Enviar'
+                                  : 'Avançar',
+                              onPressed: details.onStepContinue!,
+                              type: CustomPrimaryButtonType.fill,
+                            ),
                             const SizedBox(height: 10),
                             if (_index != 0)
                               TextButton(

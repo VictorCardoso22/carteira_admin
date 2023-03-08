@@ -24,7 +24,6 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   bool isLoading = false;
 
-
   TextEditingController usernameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   @override
@@ -37,7 +36,6 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -75,7 +73,6 @@ class LoginPageState extends State<LoginPage> {
                   ),
                   child: Form(
                     child: AutofillGroup(
-
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -88,10 +85,15 @@ class LoginPageState extends State<LoginPage> {
                           ),
                           const SizedBox(height: kMarginDefault),
                           const SizedBox(height: 20),
-                          
-                          RoundedInputField(labelText: 'Email', controller: usernameController,),
+                          RoundedInputField(
+                            labelText: 'Email',
+                            controller: usernameController,
+                          ),
                           const SizedBox(height: 16),
-                          RoundedPasswordField(controller: passwordController, onEditingComplete: trySignin,),
+                          RoundedPasswordField(
+                            controller: passwordController,
+                            onEditingComplete: trySignin,
+                          ),
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
@@ -101,19 +103,23 @@ class LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           const SizedBox(height: kMarginHalf),
-                          isLoading? const Center(child: CircularProgressIndicator(),) : CustomPrimaryButton(
-                            onPressed: () {
-                               trySignin();
-
-                            },
-                            titulo: 'Entrar',
-                          ),
+                          isLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : CustomPrimaryButton(
+                                  onPressed: () {
+                                    trySignin();
+                                  },
+                                  titulo: 'Entrar',
+                                  type: CustomPrimaryButtonType.fill,
+                                ),
                           const SizedBox(height: 16),
                           Center(
-                            child: TextButton(
+                            child: CustomPrimaryButton(
                               onPressed: () {},
-                              child: const Text('Criar conta',
-                                  style: TextStyle(color: kPrimaryLightColor)),
+                              titulo: 'Criar conta',
+                              type: CustomPrimaryButtonType.none,
                             ),
                           ),
                         ],
@@ -130,7 +136,6 @@ class LoginPageState extends State<LoginPage> {
   }
 
   trySignin() async {
-
     TextInput.finishAutofillContext();
     setState(() {
       isLoading = true;
@@ -138,11 +143,11 @@ class LoginPageState extends State<LoginPage> {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-          email: usernameController.text.trimRight(),
-          password: passwordController.text)
+              email: usernameController.text.trimRight(),
+              password: passwordController.text)
           .then((value) {
         // setPreferencesCredentials(widget.usernameController.text.trimRight(), widget.passwordController.text);
-        Get.offAndToNamed ('/home');
+        Get.offAndToNamed('/home');
       });
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -154,17 +159,9 @@ class LoginPageState extends State<LoginPage> {
       } else if (e.code == 'wrong-password') {
         toastAviso("Usuário ou senha incorretos", Colors.red, context);
         print('Wrong password provided for that user.');
-      }
-      else{
+      } else {
         toastAviso("Ocorreu um erro", Colors.red, context);
       }
     }
   }
-
-
-
 }
-
-
-
-

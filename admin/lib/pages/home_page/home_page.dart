@@ -48,10 +48,11 @@ class _HomePageState extends State<HomePage> {
         Align(
           alignment: Alignment.topRight,
           child: CustomPrimaryButton(
-              titulo: 'Cadastrar nova carteirinha',
-              onPressed: () => widget.adminPageViewlModel.goToTab(2)
-              // Get.toNamed('/cadastro'),
-              ),
+            titulo: 'Cadastrar nova carteirinha',
+            onPressed: () => widget.adminPageViewlModel.goToTab(2),
+            type: CustomPrimaryButtonType.fill,
+            // Get.toNamed('/cadastro'),
+          ),
         ),
         const SizedBox(height: 42),
         Container(
