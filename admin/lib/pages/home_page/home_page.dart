@@ -1,9 +1,12 @@
 import 'package:admin/components/custom_card.dart';
 import 'package:admin/components/custom_primary_button.dart';
+import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/tabela_carteiras/tabela_carteiras_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stacked/stacked.dart';
 
 class HomePage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
@@ -15,7 +18,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    widget.adminPageViewlModel.getAlunos();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,11 +42,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             CustomCard(
               titulo: 'Carteiras cadastradas',
-              valor: '60',
+              valor: '${listOfAlunos.length}',
             ),
             CustomCard(
               titulo: 'Carteiras aprovadas',
-              valor: '16',
+              valor: '5',
             ),
             CustomCard(
               titulo: 'Carteiras pendentes',
@@ -131,4 +141,20 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
+//   getAlunos() async {
+// //    User? user = FirebaseAuth.instance.currentUser;
+//     FirebaseFirestore firestore = FirebaseFirestore.instance;
+//     await firestore
+//         .collection('users')
+//         .get()
+//         .then((QuerySnapshot querySnapshot) {
+//       if (querySnapshot.size > 0) {
+//         querySnapshot.docs.forEach((element) {
+//           listOfAlunos.add(UserModel.fromJson(element.data()));
+//         });
+//         setState(() {});
+//       }
+//     });
+//   }
 }
