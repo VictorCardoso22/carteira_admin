@@ -10,7 +10,7 @@ import 'package:stacked/stacked.dart';
 
 class HomePage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
-  HomePage({Key? key, required this.adminPageViewlModel}) : super(key: key);
+  HomePage({Key? key, required this.adminPageViewlModel});
 
   @override
   State<HomePage> createState() => _HomePageState();

@@ -19,7 +19,6 @@ class AdminPageViewlModel extends BaseViewModel {
   AdminPageViewlModel(BuildContext this.baseContext);
 
   getPageByIndex(int index) {
-    debugPrint("$index");
     switch (index) {
       case 0:
         return HomePage(adminPageViewlModel: this);
@@ -49,6 +48,7 @@ class AdminPageViewlModel extends BaseViewModel {
 
   getAlunos() async {
 //    User? user = FirebaseAuth.instance.currentUser;
+    listOfAlunos.clear();
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore
         .collection('users')
@@ -58,9 +58,9 @@ class AdminPageViewlModel extends BaseViewModel {
         querySnapshot.docs.forEach((element) {
           listOfAlunos.add(UserModel.fromJson(element.data()));
         });
+
         notifyListeners();
       }
     });
-    return listOfAlunos;
   }
 }
