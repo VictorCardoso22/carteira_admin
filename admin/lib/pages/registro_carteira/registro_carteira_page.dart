@@ -1,6 +1,7 @@
 import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/model/user.dart';
 import 'package:admin/ui/text_style.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gallery_image_viewer/gallery_image_viewer.dart';
@@ -62,13 +63,34 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                 const Spacer(),
                 CustomPrimaryButton(
                   titulo: 'Aprovar',
-                  onPressed: () {},
+                  onPressed: () async {
+                    FirebaseFirestore firestore = FirebaseFirestore.instance;
+                    await firestore
+                        .collection('users')
+                        .where('cpf', isEqualTo: '${userModel!.cpf}')
+                        .get().then((QuerySnapshot querySnapshot) {
+                         var id = querySnapshot.docs.first.id;
+                          firestore.collection('users').doc('$id').update({'ativo':true});
+                        });
+
+                    Navigator.of(context).pop();
+                  },
                   type: CustomPrimaryButtonType.fill,
                 ),
                 const SizedBox(width: 8),
                 CustomPrimaryButton(
                   titulo: 'Recusar',
-                  onPressed: () {},
+                  onPressed: () async {
+                    FirebaseFirestore firestore = FirebaseFirestore.instance;
+                    await firestore
+                        .collection('users')
+                        .where('cpf', isEqualTo: '${userModel!.cpf}')
+                        .get().then((QuerySnapshot querySnapshot) {
+                      var id = querySnapshot.docs.first.id;
+                      firestore.collection('users').doc('$id').update({'ativo':false});
+                    });
+                    Navigator.of(context).pop();
+                  },
                   type: CustomPrimaryButtonType.none,
                   small: true,
                 ),

@@ -77,57 +77,77 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
           ),
         ),
       ],
-      rows: List<DataRow>.generate(
-          listOfAlunos.length,
-          (int index) => createDataRowItem(
-              nome: listOfAlunos[index].nomeCompleto,
-              instituicao: listOfAlunos[index].instituicao,
-              situacao: listOfAlunos[index].ativo,
-              turno: listOfAlunos[index].turno,
-              id: index)),
+      rows: listOfAlunos.length > 0
+          ? List<DataRow>.generate(
+              listOfAlunos.length,
+              (int index) => createDataRowItem(
+                  nome: listOfAlunos[index].nomeCompleto,
+                  instituicao: listOfAlunos[index].instituicao,
+                  situacao: listOfAlunos[index].ativo,
+                  turno: listOfAlunos[index].turno,
+                  id: index))
+          : <DataRow>[
+              DataRow(
+                  cells: List<DataCell>.generate(
+                      4, (index) => DataCell(CircularProgressIndicator())))
+            ],
     );
   }
 
   createDataRowItem({nome, turno, instituicao, situacao, id}) {
     return DataRow(
-      cells: <DataCell>[
-        DataCell(
-            Text(
-              '$nome',
-            ), onTap: () {
-          Get.to(RegistroCarteiraPage(
-            user: widget.adminPageViewlModel.listOfAlunos[id],
-          ));
-        }),
-        DataCell(Text('$turno'), onTap: () {
-          Get.to(RegistroCarteiraPage(
-            user: widget.adminPageViewlModel.listOfAlunos[id],
-          ));
-        }),
-        DataCell(Text('$instituicao'), onTap: () {
-          Get.to(RegistroCarteiraPage(
-            user: widget.adminPageViewlModel.listOfAlunos[id],
-          ));
-        }),
-        DataCell(
-          Container(
-            width: 100,
-            height: 26,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Color(0xFF29CC97)),
-            child: Center(
-              child: Text(
-                '$situacao',
-                style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white),
+      cells: List<DataCell>.generate(4,
+        (index) {
+          if (index < 3) {
+            return DataCell(
+                Text(
+                  (){
+                    switch(index) {
+                      case 0: {
+                        return "$nome";
+                      }
+                      case 1: {
+                        return "$turno" ;
+                      }
+                      case 2: {
+                        return "$instituicao" ;
+                      }
+                      default: {
+                        return "";
+                      }
+                      break;
+                    }
+                  }(),
+                ), onTap: () {
+              Get.to(RegistroCarteiraPage(user: widget.adminPageViewlModel.listOfAlunos[id],))!.then((value) {
+
+                setState(() {
+                  widget.adminPageViewlModel.getAlunos();
+                });
+              });
+            });
+          } else {
+            return DataCell(
+              Container(
+                width: 100,
+                height: 26,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Color(0xFF29CC97)),
+                child: Center(
+                  child: Text(
+                    '$situacao',
+                    style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
-      ],
+            );
+          }
+        },
+      ),
     );
   }
 

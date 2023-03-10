@@ -142,19 +142,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-//   getAlunos() async {
-// //    User? user = FirebaseAuth.instance.currentUser;
-//     FirebaseFirestore firestore = FirebaseFirestore.instance;
-//     await firestore
-//         .collection('users')
-//         .get()
-//         .then((QuerySnapshot querySnapshot) {
-//       if (querySnapshot.size > 0) {
-//         querySnapshot.docs.forEach((element) {
-//           listOfAlunos.add(UserModel.fromJson(element.data()));
-//         });
-//         setState(() {});
-//       }
-//     });
-//   }
 }

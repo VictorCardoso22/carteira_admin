@@ -47,7 +47,6 @@ class AdminPageViewlModel extends BaseViewModel {
   }
 
   getAlunos() async {
-//    User? user = FirebaseAuth.instance.currentUser;
     listOfAlunos.clear();
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore
