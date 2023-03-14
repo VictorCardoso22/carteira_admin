@@ -21,6 +21,9 @@ const kOnTertiaryColor = Color(0xFFFFFFFF);
 const kTertiaryContainerColor = Color(0xFFFFE15F);
 const kOnTertiaryContainerColor = Color(0xFF231B00);
 
+//SuccessColor
+const kSuccessColor = Color(0xFF29CC97);
+
 //ErrorColor
 const kErrorColor = Color(0xFFBA1B1B);
 const kOnErrorColor = Color(0xFFFFFFFF);

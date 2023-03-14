@@ -68,11 +68,15 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                     await firestore
                         .collection('users')
                         .where('cpf', isEqualTo: '${userModel!.cpf}')
-                        .get().then((QuerySnapshot querySnapshot) {
-                         var id = querySnapshot.docs.first.id;
-                          firestore.collection('users').doc('$id').update({'ativo':true});
-                        });
-
+                        .get()
+                        .then((QuerySnapshot querySnapshot) {
+                      var id = querySnapshot.docs.first.id;
+                      firestore
+                          .collection('users')
+                          .doc('$id')
+                          .update({'ativo': true});
+                    });
+                    setState(() {});
                     Navigator.of(context).pop();
                   },
                   type: CustomPrimaryButtonType.fill,
@@ -85,10 +89,15 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                     await firestore
                         .collection('users')
                         .where('cpf', isEqualTo: '${userModel!.cpf}')
-                        .get().then((QuerySnapshot querySnapshot) {
+                        .get()
+                        .then((QuerySnapshot querySnapshot) {
                       var id = querySnapshot.docs.first.id;
-                      firestore.collection('users').doc('$id').update({'ativo':false});
+                      firestore
+                          .collection('users')
+                          .doc('$id')
+                          .update({'ativo': false});
                     });
+                    setState(() {});
                     Navigator.of(context).pop();
                   },
                   type: CustomPrimaryButtonType.none,

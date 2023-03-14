@@ -11,21 +11,36 @@ import 'package:stacked/stacked.dart';
 class HomePage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
   HomePage({Key? key, required this.adminPageViewlModel});
+  HomePageState? homePageState;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() {
+    homePageState = HomePageState();
+    return homePageState!;
+  }
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   @override
   void initState() {
-    widget.adminPageViewlModel.getAlunos();
+    //widget.adminPageViewlModel.getAlunos();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
+    // List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
+
+    // listOfAlunos.forEach((element) {
+    //   // ignore: unrelated_type_equality_checks
+    //   if (element.ativo == true) {
+    //     widget.ativos;
+    //   } else {
+    //     widget.inativos + 1;
+    //   }
+    // });
+
+    // listOfAlunosAtivo.map((e) => ativos = e.ativo.toString());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -42,15 +57,14 @@ class _HomePageState extends State<HomePage> {
           children: [
             CustomCard(
               titulo: 'Carteiras cadastradas',
-              valor: '${listOfAlunos.length}',
+              valor: '${widget.adminPageViewlModel.listOfAlunos.length}',
             ),
             CustomCard(
-              titulo: 'Carteiras aprovadas',
-              valor: '5',
-            ),
+                titulo: 'Carteiras aprovadas',
+                valor: '${widget.adminPageViewlModel.ativos}'),
             CustomCard(
               titulo: 'Carteiras pendentes',
-              valor: '43',
+              valor: '${widget.adminPageViewlModel.inativos}',
             ),
           ],
         ),
@@ -141,5 +155,4 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
-
 }

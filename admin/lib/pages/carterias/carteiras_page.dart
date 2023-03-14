@@ -8,12 +8,16 @@ class CarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
   CarteirasPage({Key? key, required this.adminPageViewlModel})
       : super(key: key);
+  CarteirasPageState? carteirasPageState;
 
   @override
-  State<CarteirasPage> createState() => _CarteirasPageState();
+  State<CarteirasPage> createState() {
+    carteirasPageState = CarteirasPageState();
+    return carteirasPageState!;
+  }
 }
 
-class _CarteirasPageState extends State<CarteirasPage> {
+class CarteirasPageState extends State<CarteirasPage> {
   @override
   Widget build(BuildContext context) {
     return Column(

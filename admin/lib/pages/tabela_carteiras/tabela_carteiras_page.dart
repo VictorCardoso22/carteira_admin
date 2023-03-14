@@ -1,6 +1,7 @@
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
+import 'package:admin/ui/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
 
   @override
   void initState() {
-    // widget.adminPageViewlModel.getAlunos();
+    widget.adminPageViewlModel.getAlunos();
     // getAlunos();
     super.initState();
   }
@@ -96,31 +97,37 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
 
   createDataRowItem({nome, turno, instituicao, situacao, id}) {
     return DataRow(
-      cells: List<DataCell>.generate(4,
+      cells: List<DataCell>.generate(
+        4,
         (index) {
           if (index < 3) {
-            return DataCell(
-                Text(
-                  (){
-                    switch(index) {
-                      case 0: {
-                        return "$nome";
-                      }
-                      case 1: {
-                        return "$turno" ;
-                      }
-                      case 2: {
-                        return "$instituicao" ;
-                      }
-                      default: {
-                        return "";
-                      }
-                      break;
+            return DataCell(Text(
+              () {
+                switch (index) {
+                  case 0:
+                    {
+                      return "$nome";
                     }
-                  }(),
-                ), onTap: () {
-              Get.to(RegistroCarteiraPage(user: widget.adminPageViewlModel.listOfAlunos[id],))!.then((value) {
-
+                  case 1:
+                    {
+                      return "$turno";
+                    }
+                  case 2:
+                    {
+                      return "$instituicao";
+                    }
+                  default:
+                    {
+                      return "";
+                    }
+                    break;
+                }
+              }(),
+            ), onTap: () {
+              Get.to(RegistroCarteiraPage(
+                user: widget.adminPageViewlModel.listOfAlunos[id],
+              ))!
+                  .then((value) {
                 setState(() {
                   widget.adminPageViewlModel.getAlunos();
                 });
@@ -133,10 +140,10 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                 height: 26,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Color(0xFF29CC97)),
+                    color: situacao == true ? kSuccessColor : kErrorColor),
                 child: Center(
                   child: Text(
-                    '$situacao',
+                    situacao == true ? 'Aprovado' : 'Recusado',
                     style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

@@ -15,15 +15,22 @@ class AdminPageViewlModel extends BaseViewModel {
 
   BuildContext baseContext;
   List<UserModel> listOfAlunos = [];
+  int ativos = 0;
+  int inativos = 0;
+  HomePage? homePage;
+  CarteirasPage? carteirasPage;
 
-  AdminPageViewlModel(BuildContext this.baseContext);
+  AdminPageViewlModel(BuildContext this.baseContext) {
+    homePage = HomePage(adminPageViewlModel: this);
+    carteirasPage = CarteirasPage(adminPageViewlModel: this);
+  }
 
   getPageByIndex(int index) {
     switch (index) {
       case 0:
-        return HomePage(adminPageViewlModel: this);
+        return homePage;
       case 1:
-        return CarteirasPage(adminPageViewlModel: this);
+        return carteirasPage;
       case 2:
         return const DadosPage();
       case 3:
@@ -48,6 +55,8 @@ class AdminPageViewlModel extends BaseViewModel {
 
   getAlunos() async {
     listOfAlunos.clear();
+    ativos = 0;
+    inativos = 0;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore
         .collection('users')
@@ -55,10 +64,21 @@ class AdminPageViewlModel extends BaseViewModel {
         .then((QuerySnapshot querySnapshot) {
       if (querySnapshot.size > 0) {
         querySnapshot.docs.forEach((element) {
-          listOfAlunos.add(UserModel.fromJson(element.data()));
+          UserModel userModel = UserModel.fromJson(element.data());
+          listOfAlunos.add(userModel);
+          if (userModel.ativo == true) {
+            ativos++;
+          } else {
+            inativos++;
+          }
         });
+        if (controller.selectedIndex == 0) {
+          homePage!.homePageState?.setState(() {});
+        } else if (controller.selectedIndex == 1) {
+          carteirasPage!.carteirasPageState?.setState(() {});
+        }
 
-        notifyListeners();
+        //notifyListeners();
       }
     });
   }
