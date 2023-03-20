@@ -1,20 +1,26 @@
+import 'package:admin/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+class DataUser {
+  static UserModel? dataUser;
+}
+
 toastAviso(String aviso, Color color, BuildContext context) {
-debugPrint("${color.toHex()}");
+  debugPrint("${color.toHex()}");
   Fluttertoast.showToast(
       msg: aviso,
       webPosition: "center",
-      webBgColor: "linear-gradient(to right, ${color.toHex()}, ${color.toHex()})",
+      webBgColor:
+          "linear-gradient(to right, ${color.toHex()}, ${color.toHex()})",
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 3,
       backgroundColor: color,
       textColor: Colors.white,
-      fontSize: 16.0
-  );
+      fontSize: 16.0);
 }
+
 extension HexColor on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
   static Color fromHex(String hexString) {
@@ -23,6 +29,7 @@ extension HexColor on Color {
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
   }
+
   String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
       //'${alpha.toRadixString(16).padLeft(2, '0')}'
       '${red.toRadixString(16).padLeft(2, '0')}'
@@ -31,7 +38,12 @@ extension HexColor on Color {
 }
 
 AlertDialog buildAlertDialog(
-    {String? titulo, String? aceitar, String? cancelar, String? text, VoidCallback? onPressedConfirma, BuildContext? context}) {
+    {String? titulo,
+    String? aceitar,
+    String? cancelar,
+    String? text,
+    VoidCallback? onPressedConfirma,
+    BuildContext? context}) {
   Widget cancelaButton;
   Widget publicaButton;
   cancelaButton = TextButton(
@@ -40,10 +52,8 @@ AlertDialog buildAlertDialog(
       Navigator.of(context!).pop();
     },
   );
-  publicaButton = TextButton(
-      child: Text(aceitar!),
-      onPressed: onPressedConfirma
-  );
+  publicaButton =
+      TextButton(child: Text(aceitar!), onPressed: onPressedConfirma);
 
   AlertDialog alert = AlertDialog(
     title: Text(titulo!),

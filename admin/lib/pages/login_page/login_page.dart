@@ -1,9 +1,12 @@
 import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/components/rounded_input_field.dart';
 import 'package:admin/components/rounded_password_field.dart';
+import 'package:admin/model/user.dart';
 import 'package:admin/ui/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -28,6 +31,7 @@ class LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = new TextEditingController();
   @override
   void initState() {
+    initializeDefault();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // do what you want here
     });
@@ -147,7 +151,8 @@ class LoginPageState extends State<LoginPage> {
               password: passwordController.text)
           .then((value) {
         // setPreferencesCredentials(widget.usernameController.text.trimRight(), widget.passwordController.text);
-        Get.offAndToNamed('/home');
+
+        getFirebaseData();
       });
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -163,5 +168,27 @@ class LoginPageState extends State<LoginPage> {
         toastAviso("Ocorreu um erro", Colors.red, context);
       }
     }
+  }
+
+  Future<void> getFirebaseData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    await firestore
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        // print('Document data: ${documentSnapshot.data()}');
+        DataUser.dataUser = UserModel.fromJson(documentSnapshot.data());
+        //User //documentSnapshot.data();
+        Get.offAndToNamed('/home');
+      }
+    });
+  }
+
+  Future<void> initializeDefault() async {
+    FirebaseApp app = await Firebase.initializeApp();
+    print('Initialized default app $app');
   }
 }

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gallery_image_viewer/gallery_image_viewer.dart';
 
+import '../../common_codes.dart';
+
 class RegistroCarteiraPage extends StatefulWidget {
   UserModel? user;
 
@@ -123,9 +125,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                         SizedBox(
                           width: 180,
                           height: 180,
-                          child: Image.asset(
-                            'assets/perfil.jpg',
-                          ),
+                          child: Image.network("${userModel!.fotoAnexo}"),
                         ),
                         SizedBox(width: 20),
                         Column(
@@ -385,8 +385,18 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                                 width: 100,
                                 height: 100,
                                 // color: Colors.amberAccent,
-                                child: Image.network(
-                                  '${userModel!.comprovanteResidenciaAnexo}',
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(showImageViewer(
+                                      context,
+                                      Image.network(
+                                        '${userModel!.comprovanteResidenciaAnexo}',
+                                      ).image,
+                                    ));
+                                  },
+                                  child: Image.network(
+                                    '${userModel!.comprovanteResidenciaAnexo}',
+                                  ),
                                 ),
                               ),
                             ],

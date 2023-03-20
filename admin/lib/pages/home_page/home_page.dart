@@ -1,3 +1,4 @@
+import 'package:admin/common_codes.dart';
 import 'package:admin/components/custom_card.dart';
 import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/model/user.dart';
@@ -21,12 +22,6 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    //widget.adminPageViewlModel.getAlunos();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     // List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;

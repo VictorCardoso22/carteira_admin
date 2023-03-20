@@ -2,7 +2,7 @@ import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 
 class TopoPage extends StatefulWidget {
-  Image? imagemPerfil;
+  String? imagemPerfil;
   String? nome;
 
   TopoPage({Key? key, this.imagemPerfil, this.nome}) : super(key: key);
@@ -21,13 +21,8 @@ class _TopoPageState extends State<TopoPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // const Text(
-          //   "Dashboard",
-          //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          // ),
-          // Spacer(),
           const SizedBox(width: 10),
-          _buildIcon(
+          _icon(
               heightBox: 40, icon: Icons.notifications_none, onPressed: () {}),
           const SizedBox(width: 10),
           Container(
@@ -36,7 +31,7 @@ class _TopoPageState extends State<TopoPage> {
             color: kPrimaryContainerColor,
           ),
           const SizedBox(width: 30),
-          _buildPersonalInfo(
+          _personalInfo(
             name: widget.nome,
             imagePerfil: widget.imagemPerfil,
           )
@@ -45,7 +40,7 @@ class _TopoPageState extends State<TopoPage> {
     );
   }
 
-  Widget _buildIcon({double? heightBox, IconData? icon, onPressed}) {
+  Widget _icon({double? heightBox, IconData? icon, onPressed}) {
     return Container(
         constraints: BoxConstraints.tightFor(
           width: 60,
@@ -62,8 +57,8 @@ class _TopoPageState extends State<TopoPage> {
         ));
   }
 
-  Widget _buildPersonalInfo({
-    Image? imagePerfil,
+  Widget _personalInfo({
+    String? imagePerfil,
     String? name,
   }) {
     String? _name = name;
@@ -75,9 +70,17 @@ class _TopoPageState extends State<TopoPage> {
           _name!,
         )),
         const SizedBox(width: 18),
-        CircleAvatar(
-          maxRadius: 30,
-          child: imagePerfil!,
+        SizedBox(
+          height: 55,
+          width: 55,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(imagePerfil.toString()),
+              ),
+            ],
+          ),
         ),
       ],
     );

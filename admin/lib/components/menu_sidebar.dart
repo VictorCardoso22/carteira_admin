@@ -1,3 +1,4 @@
+import 'package:admin/common_codes.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/topo_page/topo_page.dart';
 import 'package:flutter/material.dart';
@@ -117,10 +118,9 @@ class Screens extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 TopoPage(
-                    nome: 'Fulano de tal da Silva',
-                    imagemPerfil: Image.asset(
-                      'assets/perfil.jpg',
-                    )),
+                  nome: '${DataUser.dataUser!.nomeCompleto}',
+                  imagemPerfil: "${DataUser.dataUser!.fotoAnexo}",
+                ),
                 const SizedBox(height: 22),
                 adminPageViewlModel.getPageByIndex(controller.selectedIndex)
               ],
