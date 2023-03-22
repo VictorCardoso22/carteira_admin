@@ -6,10 +6,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_search_bar/flutter_search_bar.dart';
 
 class TabelaCarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
-
   TabelaCarteirasPage({Key? key, required this.adminPageViewlModel})
       : super(key: key);
 
@@ -19,79 +19,133 @@ class TabelaCarteirasPage extends StatefulWidget {
 
 class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
   // List<UserModel> listOfAlunos = [];
+  TextEditingController textEditingController = new TextEditingController();
+  late SearchBar searchBar;
+  String filter = "";
+  bool itemFilter = true;
 
   @override
   void initState() {
     widget.adminPageViewlModel.getAlunos();
     // getAlunos();
+    // ignore: unnecessary_new
+    searchBar = new SearchBar(
+        inBar: false,
+        controller: textEditingController,
+        setState: setState,
+        hintText: "Pesquisar",
+        showClearButton: true,
+        onClosed: () {
+          setState(() {
+            filter = "";
+          });
+        },
+        onChanged: (value) {
+          setState(() {
+            filter = value;
+            geraListFiltrada();
+          });
+        },
+        buildDefaultAppBar: (context) => AppBar(
+            backgroundColor: kOnPrimaryLightColor,
+            foregroundColor: kBackgroundDarkColor,
+            automaticallyImplyLeading: false,
+            elevation: 0,
+            actions: [searchBar.getSearchAction(context)]));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
-    return DataTable(
-      columnSpacing: 140,
-      columns: const <DataColumn>[
-        DataColumn(
-          label: Expanded(
-            child: Text(
-              'Nome',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF9FA2B4)),
-            ),
-          ),
+    List<UserModel> listFiltrada = widget.adminPageViewlModel.listFiltradaNome;
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22.0),
+          child: searchBar.build(context),
         ),
-        DataColumn(
-          label: Expanded(
-            child: Text(
-              'Turnos',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF9FA2B4)),
-            ),
-          ),
-        ),
-        DataColumn(
-          label: Expanded(
-            child: Text(
-              'Instituição de ensino',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF9FA2B4)),
-            ),
-          ),
-        ),
-        DataColumn(
-          label: Expanded(
-            child: Text(
-              'Status',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF9FA2B4)),
-            ),
-          ),
-        ),
-      ],
-      rows: listOfAlunos.length > 0
-          ? List<DataRow>.generate(
-              listOfAlunos.length,
-              (int index) => createDataRowItem(
-                  nome: listOfAlunos[index].nomeCompleto,
-                  instituicao: listOfAlunos[index].instituicao,
-                  situacao: listOfAlunos[index].ativo,
-                  turno: listOfAlunos[index].turno,
-                  id: index))
-          : <DataRow>[
-              DataRow(
-                  cells: List<DataCell>.generate(
-                      4, (index) => DataCell(CircularProgressIndicator())))
+        DataTable(
+            columnSpacing: 140,
+            columns: const <DataColumn>[
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Nome',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF9FA2B4)),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Turnos',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF9FA2B4)),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Instituição de ensino',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF9FA2B4)),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Status',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF9FA2B4)),
+                  ),
+                ),
+              ),
             ],
+            rows: () {
+              if (filter == "") {
+                return listOfAlunos.length > 0
+                    ? List<DataRow>.generate(listOfAlunos.length, (int index) {
+                        return createDataRowItem(
+                          nome: listOfAlunos[index].nomeCompleto,
+                          instituicao: listOfAlunos[index].instituicao,
+                          situacao: listOfAlunos[index].ativo,
+                          turno: listOfAlunos[index].turno,
+                          id: index,
+                        );
+                      })
+                    : <DataRow>[
+                        DataRow(
+                            cells: List<DataCell>.generate(
+                                4,
+                                (index) =>
+                                    DataCell(CircularProgressIndicator())))
+                      ];
+              } else {
+                return List<DataRow>.generate(listFiltrada.length, (int index) {
+                  return createDataRowItem(
+                    nome: listFiltrada[index].nomeCompleto,
+                    instituicao: listFiltrada[index].instituicao,
+                    situacao: listFiltrada[index].ativo,
+                    turno: listFiltrada[index].turno,
+                    id: index,
+                  );
+                });
+              }
+            }()),
+      ],
     );
   }
 
@@ -156,6 +210,16 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
         },
       ),
     );
+  }
+
+  geraListFiltrada() {
+    widget.adminPageViewlModel.listFiltradaNome.clear();
+    widget.adminPageViewlModel.listOfAlunos.forEach((element) {
+      itemFilter = element.nomeCompleto!.contains(filter);
+      if (itemFilter) {
+        widget.adminPageViewlModel.listFiltradaNome.add(element);
+      }
+    });
   }
 
 //   getAlunos() async {

@@ -97,21 +97,21 @@ class HomePageState extends State<HomePage> {
                         ),
                       ),
                       Spacer(),
-                      SizedBox(
-                        width: 185,
-                        height: 32,
-                        child: TextField(
-                          textAlignVertical: TextAlignVertical.center,
-                          // label:
-                          decoration: InputDecoration(
-                              alignLabelWithHint: false,
-                              // prefixIcon: Icon(Icons.search),
-                              labelText: 'Pesqusiar',
-                              border: OutlineInputBorder(),
-                              // hintText: 'Pesquisar',
-                              suffixIcon: Icon(Icons.search)),
-                        ),
-                      ),
+                      // SizedBox(
+                      //   width: 185,
+                      //   height: 32,
+                      //   child: TextField(
+                      //     textAlignVertical: TextAlignVertical.center,
+                      //     // label:
+                      //     decoration: InputDecoration(
+                      //         alignLabelWithHint: false,
+                      //         // prefixIcon: Icon(Icons.search),
+                      //         labelText: 'Pesqusiar',
+                      //         border: OutlineInputBorder(),
+                      //         // hintText: 'Pesquisar',
+                      //         suffixIcon: Icon(Icons.search)),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

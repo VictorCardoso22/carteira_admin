@@ -15,6 +15,9 @@ class AdminPageViewlModel extends BaseViewModel {
 
   BuildContext baseContext;
   List<UserModel> listOfAlunos = [];
+  List<UserModel> listOfAlunosAtivos = [];
+  List<UserModel> listOfAlunosInativos = [];
+  List<UserModel> listFiltradaNome = [];
   int ativos = 0;
   int inativos = 0;
   HomePage? homePage;
@@ -67,8 +70,10 @@ class AdminPageViewlModel extends BaseViewModel {
           UserModel userModel = UserModel.fromJson(element.data());
           listOfAlunos.add(userModel);
           if (userModel.ativo == true) {
+            listOfAlunosAtivos.add(userModel);
             ativos++;
           } else {
+            listOfAlunosInativos.add(userModel);
             inativos++;
           }
         });
