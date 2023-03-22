@@ -1,5 +1,6 @@
 import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/model/user.dart';
+import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/ui/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,10 @@ import '../../common_codes.dart';
 
 class RegistroCarteiraPage extends StatefulWidget {
   UserModel? user;
-
-  RegistroCarteiraPage({Key? key, this.user}) : super(key: key);
+  RegistroCarteiraPage({
+    Key? key,
+    this.user,
+  }) : super(key: key);
 
   @override
   State<RegistroCarteiraPage> createState() {
@@ -78,8 +81,8 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                           .doc('$id')
                           .update({'ativo': true});
                     });
+                    Get.back();
                     setState(() {});
-                    Navigator.of(context).pop();
                   },
                   type: CustomPrimaryButtonType.fill,
                 ),
@@ -99,8 +102,8 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                           .doc('$id')
                           .update({'ativo': false});
                     });
+                    Get.back();
                     setState(() {});
-                    Navigator.of(context).pop();
                   },
                   type: CustomPrimaryButtonType.none,
                   small: true,
