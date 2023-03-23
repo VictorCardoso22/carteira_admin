@@ -23,13 +23,14 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
   late SearchBar searchBar;
   String filter = "";
   bool itemFilter = true;
+  bool aprovado = false;
+  bool pendente = false;
+  bool todos = true;
 
   @override
   void initState() {
     widget.adminPageViewlModel.getAlunos();
-    // getAlunos();
-    // ignore: unnecessary_new
-    searchBar = new SearchBar(
+    searchBar = SearchBar(
         inBar: false,
         controller: textEditingController,
         setState: setState,
@@ -59,6 +60,10 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
   Widget build(BuildContext context) {
     List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
     List<UserModel> listFiltrada = widget.adminPageViewlModel.listFiltradaNome;
+    List<UserModel> listAprovados =
+        widget.adminPageViewlModel.listOfAlunosAtivos;
+    List<UserModel> listPendentes =
+        widget.adminPageViewlModel.listOfAlunosInativos;
 
     return Column(
       children: [
@@ -68,8 +73,8 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
         ),
         DataTable(
             columnSpacing: 140,
-            columns: const <DataColumn>[
-              DataColumn(
+            columns: <DataColumn>[
+              const DataColumn(
                 label: Expanded(
                   child: Text(
                     'Nome',
@@ -80,7 +85,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                   ),
                 ),
               ),
-              DataColumn(
+              const DataColumn(
                 label: Expanded(
                   child: Text(
                     'Turnos',
@@ -91,7 +96,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                   ),
                 ),
               ),
-              DataColumn(
+              const DataColumn(
                 label: Expanded(
                   child: Text(
                     'Instituição de ensino',
@@ -104,35 +109,171 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
               ),
               DataColumn(
                 label: Expanded(
-                  child: Text(
-                    'Status',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF9FA2B4)),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        child: Container(
+                            height: 38,
+                            padding: const EdgeInsets.only(
+                                left: 18, right: 12, bottom: 4, top: 4),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(40),
+                                bottomLeft: Radius.circular(40),
+                              ),
+                              color: todos == true
+                                  ? kPrimaryContainerColor
+                                  : kPrimaryLightColor,
+                            ),
+                            child: Center(
+                                child: Text(
+                              'Todos',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  color: todos == true
+                                      ? kPrimaryLightColor
+                                      : kOnPrimaryLightColor),
+                            ))),
+                        onTap: () {
+                          setState(() {
+                            todos = true;
+                            aprovado = false;
+                            pendente = false;
+                          });
+                        },
+                      ),
+                      InkWell(
+                        child: Container(
+                            height: 38,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 08),
+                            decoration: BoxDecoration(
+                              color: aprovado == true
+                                  ? kPrimaryContainerColor
+                                  : kPrimaryLightColor,
+                            ),
+                            child: Center(
+                                child: Text('Aprovados',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: aprovado == true
+                                            ? kPrimaryLightColor
+                                            : kOnPrimaryLightColor)))),
+                        onTap: () {
+                          setState(() {
+                            todos = false;
+                            aprovado = true;
+                            pendente = false;
+                          });
+                        },
+                      ),
+                      InkWell(
+                        child: Container(
+                            height: 38,
+                            padding: const EdgeInsets.only(
+                                left: 12, right: 18, bottom: 4, top: 4),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(40),
+                                bottomRight: Radius.circular(40),
+                              ),
+                              color: pendente == true
+                                  ? kPrimaryContainerColor
+                                  : kPrimaryLightColor,
+                            ),
+                            child: Center(
+                                child: Text('Pendentes',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: pendente == true
+                                            ? kPrimaryLightColor
+                                            : kOnPrimaryLightColor)))),
+                        onTap: () {
+                          todos = false;
+                          aprovado = false;
+                          pendente = true;
+
+                          setState(() {});
+                        },
+                      )
+                    ],
                   ),
                 ),
               ),
             ],
             rows: () {
               if (filter == "") {
-                return listOfAlunos.length > 0
-                    ? List<DataRow>.generate(listOfAlunos.length, (int index) {
-                        return createDataRowItem(
-                          nome: listOfAlunos[index].nomeCompleto,
-                          instituicao: listOfAlunos[index].instituicao,
-                          situacao: listOfAlunos[index].ativo,
-                          turno: listOfAlunos[index].turno,
-                          id: index,
-                        );
-                      })
-                    : <DataRow>[
-                        DataRow(
-                            cells: List<DataCell>.generate(
-                                4,
-                                (index) =>
-                                    DataCell(CircularProgressIndicator())))
-                      ];
+                if (pendente == true) {
+                  setState(() {});
+                  return listPendentes.isNotEmpty
+                      ? List<DataRow>.generate(listPendentes.length,
+                          (int index) {
+                          setState(() {});
+                          return createDataRowItem(
+                            nome: listPendentes[index].nomeCompleto,
+                            instituicao: listPendentes[index].instituicao,
+                            situacao: listPendentes[index].ativo,
+                            turno: listPendentes[index].turno,
+                            id: index,
+                          );
+                        })
+                      : <DataRow>[
+                          DataRow(
+                              cells: List<DataCell>.generate(
+                                  4,
+                                  (index) => const DataCell(
+                                      CircularProgressIndicator())))
+                        ];
+                } else if (aprovado == true) {
+                  setState(() {});
+                  return listAprovados.isNotEmpty
+                      ? List<DataRow>.generate(listAprovados.length,
+                          (int index) {
+                          setState(() {});
+                          return createDataRowItem(
+                            nome: listAprovados[index].nomeCompleto,
+                            instituicao: listAprovados[index].instituicao,
+                            situacao: listAprovados[index].ativo,
+                            turno: listAprovados[index].turno,
+                            id: index,
+                          );
+                        })
+                      : <DataRow>[
+                          DataRow(
+                              cells: List<DataCell>.generate(
+                                  4,
+                                  (index) => const DataCell(
+                                      CircularProgressIndicator())))
+                        ];
+                } else if (todos == true) {
+                  return listOfAlunos.isNotEmpty
+                      ? List<DataRow>.generate(listOfAlunos.length,
+                          (int index) {
+                          setState(() {});
+                          return createDataRowItem(
+                            nome: listOfAlunos[index].nomeCompleto,
+                            instituicao: listOfAlunos[index].instituicao,
+                            situacao: listOfAlunos[index].ativo,
+                            turno: listOfAlunos[index].turno,
+                            id: index,
+                          );
+                        })
+                      : <DataRow>[
+                          DataRow(
+                              cells: List<DataCell>.generate(
+                                  4,
+                                  (index) => const DataCell(
+                                      CircularProgressIndicator())))
+                        ];
+                } else {
+                  return <DataRow>[
+                    DataRow(
+                        cells: List<DataCell>.generate(
+                            4,
+                            (index) =>
+                                const DataCell(CircularProgressIndicator())))
+                  ];
+                }
               } else {
                 return List<DataRow>.generate(listFiltrada.length, (int index) {
                   return createDataRowItem(
@@ -189,19 +330,21 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
             });
           } else {
             return DataCell(
-              Container(
-                width: 100,
-                height: 26,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: situacao == true ? kSuccessColor : kErrorColor),
-                child: Center(
-                  child: Text(
-                    situacao == true ? 'Aprovado' : 'Recusado',
-                    style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
+              Center(
+                child: Container(
+                  width: 100,
+                  height: 26,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: situacao == true ? kSuccessColor : kErrorColor),
+                  child: Center(
+                    child: Text(
+                      situacao == true ? 'Aprovado' : 'Pendente',
+                      style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
               ),

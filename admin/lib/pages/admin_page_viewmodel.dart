@@ -58,6 +58,8 @@ class AdminPageViewlModel extends BaseViewModel {
 
   getAlunos() async {
     listOfAlunos.clear();
+    listOfAlunosAtivos.clear();
+    listOfAlunosInativos.clear();
     ativos = 0;
     inativos = 0;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -83,7 +85,7 @@ class AdminPageViewlModel extends BaseViewModel {
           carteirasPage!.carteirasPageState?.setState(() {});
         }
 
-        //notifyListeners();
+        notifyListeners();
       }
     });
   }

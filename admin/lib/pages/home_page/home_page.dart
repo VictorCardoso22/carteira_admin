@@ -36,6 +36,7 @@ class HomePageState extends State<HomePage> {
     // });
 
     // listOfAlunosAtivo.map((e) => ativos = e.ativo.toString());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
