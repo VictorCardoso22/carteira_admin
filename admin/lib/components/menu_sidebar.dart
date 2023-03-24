@@ -59,7 +59,7 @@ class MenuSidebarX extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 26.0, horizontal: 10),
             child: Text(
-              'ADMIN',
+              '',
               style: TextStyle(color: accentCanvasColor, fontSize: 22),
             ),
           ),

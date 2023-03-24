@@ -37,27 +37,27 @@ class CarteirasPageState extends State<CarteirasPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
-                  child: Row(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          'Ultimos cadastros',
-                          style: TextStyle(
-                            fontSize: 19,
-                            color: Color(0xFF252733),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                ),
-                const Divider(),
+                // Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
+                //   child: Row(
+                //     children: const [
+                //       Padding(
+                //         padding: EdgeInsets.all(12.0),
+                //         child: Text(
+                //           'Ultimos cadastros',
+                //           style: TextStyle(
+                //             fontSize: 19,
+                //             color: Color(0xFF252733),
+                //             fontWeight: FontWeight.bold,
+                //           ),
+                //         ),
+                //       ),
+                //       Spacer(),
+                //     ],
+                //   ),
+                // ),
+                // const Divider(),
                 // table(),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,

@@ -34,7 +34,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
         inBar: false,
         controller: textEditingController,
         setState: setState,
-        hintText: "Pesquisar",
+        hintText: "Pesquisar por nome",
         showClearButton: true,
         onClosed: () {
           setState(() {

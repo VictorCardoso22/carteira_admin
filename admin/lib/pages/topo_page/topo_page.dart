@@ -1,3 +1,4 @@
+import 'package:admin/components/menu_sidebar.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -17,10 +18,15 @@ class _TopoPageState extends State<TopoPage> {
     return Container(
       height: 70,
       margin: EdgeInsets.zero,
-      padding: EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          const Text('ADMIN CARTEIRA ESTUDANTIL',
+              style: TextStyle(
+                  color: kPrimaryLightColor,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold)),
+          Spacer(),
           const SizedBox(width: 10),
           _icon(
               heightBox: 40, icon: Icons.notifications_none, onPressed: () {}),

@@ -1,3 +1,4 @@
+import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -22,7 +23,7 @@ class CustomCard extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               titulo!,
-              style: TextStyle(fontSize: 19, color: Color(0xFF9FA2B4)),
+              style: TextStyle(fontSize: 20, color: kSupportColor),
             ),
             const SizedBox(height: 15),
             Text(

@@ -43,7 +43,7 @@ class HomePageState extends State<HomePage> {
         const Text(
           'Dashboard',
           style: TextStyle(
-              fontSize: 24,
+              fontSize: 22,
               color: Color(0xFF252733),
               fontWeight: FontWeight.bold),
         ),

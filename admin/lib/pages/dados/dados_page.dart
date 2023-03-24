@@ -62,7 +62,7 @@ class _DadosPageState extends State<DadosPage> {
                         SizedBox(
                           width: 300,
                           child: SwitchListTile(
-                              title: const Text('Vertical Stepper?'),
+                              title: const Text('Visualização vertical?'),
                               subtitle: const Text(
                                   'visualização vertical/horizontal'),
                               value: isVerticalStepper,
