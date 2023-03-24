@@ -1,32 +1,41 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:admin/ui/colors.dart';
+import 'package:admin/common_codes.dart';
+import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class DadosPessoaisPage extends StatefulWidget {
-  TextEditingController textEditingControllerCpf = new TextEditingController();
+  bool isEnabled = true;
+  TextEditingController textEditingControllerCpf = TextEditingController();
   TextEditingController textEditingControllerNomeCompleto =
-      new TextEditingController();
+      TextEditingController();
   TextEditingController textEditingControllerDataNascimento =
-      new TextEditingController();
-  TextEditingController textEditingControllerRg = new TextEditingController();
-  TextEditingController textEditingControllerEmissor =
-      new TextEditingController();
-  TextEditingController textEditingControllerCep = new TextEditingController();
+      TextEditingController();
+  TextEditingController textEditingControllerRg = TextEditingController();
+  TextEditingController textEditingControllerEmissor = TextEditingController();
+  TextEditingController textEditingControllerCep = TextEditingController();
   TextEditingController textEditingControllerLogradouro =
-      new TextEditingController();
-  TextEditingController textEditingControllerBairro =
-      new TextEditingController();
-  TextEditingController textEditingControllerNumero =
-      new TextEditingController();
+      TextEditingController();
+  TextEditingController textEditingControllerBairro = TextEditingController();
+  TextEditingController textEditingControllerNumeroEndereco =
+      TextEditingController();
   TextEditingController textEditingControllerComplemento =
-      new TextEditingController();
-  TextEditingController textEditingControllerEmail =
-      new TextEditingController();
-  TextEditingController textEditingControllerSenha =
-      new TextEditingController();
+      TextEditingController();
+  TextEditingController textEditingControllerEmail = TextEditingController();
+  TextEditingController textEditingControllerSenha = TextEditingController();
 
-  DadosPessoaisPage({Key? key}) : super(key: key);
+  var maskFormatterCPF = new MaskTextInputFormatter(
+      mask: '###.###.###-##', filter: {"#": RegExp(r'[0-9]')});
+  var maskFormatterCEP = new MaskTextInputFormatter(
+      mask: '#####-###', filter: {"#": RegExp(r'[0-9]')});
+  var maskFormatterDataNascimento = new MaskTextInputFormatter(
+      mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
+
+  DadosPessoaisPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<DadosPessoaisPage> createState() => _DadosPessoaisPageState();
@@ -40,8 +49,10 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
         SizedBox(
           // width: 328,
           child: TextFormField(
+            enabled: widget.isEnabled,
             controller: widget.textEditingControllerCpf,
             keyboardType: TextInputType.number,
+            inputFormatters: [widget.maskFormatterCPF],
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -49,8 +60,8 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
               labelText: 'CPF*',
             ),
             validator: (text) {
-              if (text == null || text.isEmpty) {
-                return 'O campo CPF não pode ser vazio!';
+              if (!CPFValidator.isValid(text)) {
+                return 'Cpf inválido';
               }
 
               return null;
@@ -61,6 +72,7 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
         SizedBox(
           // width: 328,
           child: TextFormField(
+            enabled: widget.isEnabled,
             controller: widget.textEditingControllerNomeCompleto,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -82,7 +94,9 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
         SizedBox(
           // width: 328,
           child: TextFormField(
+            enabled: widget.isEnabled,
             controller: widget.textEditingControllerDataNascimento,
+            inputFormatters: [widget.maskFormatterDataNascimento],
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -106,6 +120,7 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
               flex: 3,
               // width: 296,
               child: TextFormField(
+                enabled: widget.isEnabled,
                 controller: widget.textEditingControllerRg,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -127,6 +142,7 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
             Expanded(
               // width: 90,
               child: TextFormField(
+                enabled: widget.isEnabled,
                 controller: widget.textEditingControllerEmissor,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -146,16 +162,16 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
         ),
         SizedBox(height: 8),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             Expanded(
               flex: 4,
               // width: 282,
               child: TextFormField(
+                enabled: widget.isEnabled,
                 controller: widget.textEditingControllerCep,
                 keyboardType: TextInputType.number,
+                inputFormatters: [widget.maskFormatterCEP],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -171,28 +187,29 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
                 },
               ),
             ),
-            SizedBox(width: 18),
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: kPrimaryDarkColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.search,
-                  color: kPrimaryLightColor,
-                ),
-              ),
-            ),
+            //SizedBox(width: 18),
+            // Container(
+            //   width: 52,
+            //   height: 52,
+            //   decoration: BoxDecoration(
+            //     color: kPrimaryColor,
+            //     borderRadius: BorderRadius.circular(10),
+            //   ),
+            //   child: IconButton(
+            //     onPressed: () {},
+            //     icon: Icon(
+            //       Icons.search,
+            //       color: kPrimaryLightColor,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         SizedBox(height: 8),
         SizedBox(
           // width: 328,
           child: TextFormField(
+            enabled: widget.isEnabled,
             controller: widget.textEditingControllerLogradouro,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -217,6 +234,7 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
               flex: 3,
               // width: 282,
               child: TextFormField(
+                enabled: widget.isEnabled,
                 controller: widget.textEditingControllerBairro,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -237,7 +255,9 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
             Expanded(
               // width: 38,
               child: TextFormField(
-                controller: widget.textEditingControllerNumero,
+                enabled: widget.isEnabled,
+                controller: widget.textEditingControllerNumeroEndereco,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -259,6 +279,8 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
         SizedBox(
           // width: 328,
           child: TextFormField(
+            enabled: widget.isEnabled,
+            controller: widget.textEditingControllerComplemento,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -271,6 +293,7 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
         SizedBox(
           // width: 328,
           child: TextFormField(
+            enabled: widget.isEnabled,
             controller: widget.textEditingControllerEmail,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -278,11 +301,16 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
               ),
               labelText: 'E-mail*',
             ),
-            validator: (text) {
-              if (text == null || text.isEmpty) {
-                return 'O campo e-mail não pode ser vazio!';
+            validator: (value) {
+              var email = value;
+              bool emailValid = RegExp(
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                  .hasMatch(email!);
+              if (emailValid) {
+                return null;
+              } else {
+                return "Verifique o email por favor";
               }
-              return text.contains('@') ? null : 'Informe um email valido';
             },
           ),
         ),
@@ -290,6 +318,7 @@ class _DadosPessoaisPageState extends State<DadosPessoaisPage> {
         SizedBox(
           // width: 328,
           child: TextFormField(
+            enabled: widget.isEnabled,
             controller: widget.textEditingControllerSenha,
             obscureText: true,
             decoration: InputDecoration(

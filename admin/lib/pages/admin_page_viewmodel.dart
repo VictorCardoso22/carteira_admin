@@ -35,7 +35,7 @@ class AdminPageViewlModel extends BaseViewModel {
       case 1:
         return carteirasPage;
       case 2:
-        return const DadosPage();
+        return DadosPage();
       case 3:
         Future.delayed(Duration.zero, () {
           Get.offAllNamed("/login");

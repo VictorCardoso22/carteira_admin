@@ -215,7 +215,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('CEP'),
+                              // Text('CEP'),
                               SizedBox(width: 20),
                               Text('${userModel!.endereco}'),
                             ],
@@ -223,64 +223,64 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Logradouro'),
-                              SizedBox(width: 20),
-                              Text('${userModel!.endereco}'),
-                            ],
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Numero'),
-                              Text('${userModel!.endereco}'),
-                            ],
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Bairro'),
-                              Text('${userModel!.endereco}'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Complemento'),
-                              SizedBox(width: 20),
-                              Text('${userModel!.endereco}'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    // SizedBox(height: 20),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Expanded(
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           Text('Logradouro'),
+                    //           SizedBox(width: 20),
+                    //           Text('${userModel!.endereco}'),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     SizedBox(width: 20),
+                    //     Expanded(
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           Text('Numero'),
+                    //           Text('${userModel!.endereco}'),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     SizedBox(width: 20),
+                    //     Expanded(
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           Text('Bairro'),
+                    //           Text('${userModel!.endereco}'),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(height: 20),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Expanded(
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           Text('Complemento'),
+                    //           SizedBox(width: 20),
+                    //           Text('${userModel!.endereco}'),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
 
                     SizedBox(height: 20),
                     const Text(
