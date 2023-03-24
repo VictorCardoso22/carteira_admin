@@ -117,10 +117,10 @@ class Screens extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                TopoPage(
-                  nome: '${DataUser.dataUser!.nomeCompleto}',
-                  imagemPerfil: "${DataUser.dataUser!.fotoAnexo}",
-                ),
+                // TopoPage(
+                //   nome: '${DataUser.dataUser!.nomeCompleto}',
+                //   imagemPerfil: "${DataUser.dataUser!.fotoAnexo}",
+                // ),
                 const SizedBox(height: 22),
                 adminPageViewlModel.getPageByIndex(controller.selectedIndex)
               ],

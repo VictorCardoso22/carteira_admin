@@ -1,19 +1,18 @@
 import 'package:admin/components/menu_sidebar.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
-import 'package:admin/pages/topo_page/topo_page.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:stacked/stacked.dart';
 
 class AdminPage extends StatefulWidget {
   AdminPage({Key? key}) : super(key: key);
-  final _key = GlobalKey<ScaffoldState>();
+
   @override
   State<AdminPage> createState() => _AdminPageState();
 }
 
 class _AdminPageState extends State<AdminPage> {
+  final _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AdminPageViewlModel>.reactive(
@@ -21,7 +20,7 @@ class _AdminPageState extends State<AdminPage> {
         builder: (context, model, child) {
           final isSmallScreen = MediaQuery.of(context).size.width < 600;
           return Scaffold(
-            key: widget._key,
+            key: _key,
             drawer: MenuSidebarX(controller: model.controller),
             appBar: isSmallScreen
                 ? AppBar(
@@ -29,7 +28,7 @@ class _AdminPageState extends State<AdminPage> {
                     leading: IconButton(
                       onPressed: () {
                         model.controller.setExtended(true);
-                        widget._key.currentState?.openDrawer();
+                        _key.currentState?.openDrawer();
                       },
                       icon: const Icon(Icons.menu),
                     ),
