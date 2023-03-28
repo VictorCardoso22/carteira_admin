@@ -84,7 +84,9 @@ class _DadosPageState extends State<DadosPage> {
               Expanded(
                 child: Stepper(
                   elevation: 0,
-                  type: StepperType.horizontal,
+                  type: isVerticalStepper
+                      ? StepperType.vertical
+                      : StepperType.horizontal,
                   physics: const ScrollPhysics(),
                   currentStep: _index,
                   onStepTapped: (step) => tapped(step),

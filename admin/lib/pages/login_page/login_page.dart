@@ -119,13 +119,13 @@ class LoginPageState extends State<LoginPage> {
                                   type: CustomPrimaryButtonType.fill,
                                 ),
                           const SizedBox(height: 16),
-                          Center(
-                            child: CustomPrimaryButton(
-                              onPressed: () {},
-                              titulo: 'Criar conta',
-                              type: CustomPrimaryButtonType.none,
-                            ),
-                          ),
+                          // Center(
+                          //   child: CustomPrimaryButton(
+                          //     onPressed: () {},
+                          //     titulo: 'Criar conta',
+                          //     type: CustomPrimaryButtonType.none,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
