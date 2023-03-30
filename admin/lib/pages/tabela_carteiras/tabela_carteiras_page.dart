@@ -1,4 +1,5 @@
-import 'package:admin/components/search_bar.dart';
+// import 'package:admin/components/search_bar.dart';
+// import 'package:admin/components/search_bar.dart';
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
@@ -8,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:easy_search_bar/easy_search_bar.dart';
 
 class TabelaCarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
@@ -48,19 +50,21 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
           width: MediaQuery.of(context).size.width,
           height: 60,
           padding: const EdgeInsets.symmetric(horizontal: 22.0),
-          child: SearchBar(
-            isFloating: true,
-            title: const Text(''),
-            leading: null,
-            searchHintText: 'Pesquisar por nome',
-            elevation: 0,
-            iconTheme: null,
-            backgroundColor: kOnPrimaryLightColor,
-            foregroundColor: kBackgroundDarkColor,
-            onSearch: (value) => setState(() {
-              geraListFiltrada();
-              filter = value;
-            }),
+          child: Scaffold(
+            appBar: EasySearchBar(
+              isFloating: true,
+              title: const Text(''),
+              leading: null,
+              searchHintText: 'Pesquisar por nome',
+              elevation: 0,
+              iconTheme: null,
+              backgroundColor: kOnPrimaryLightColor,
+              foregroundColor: kBackgroundDarkColor,
+              onSearch: (value) => setState(() {
+                geraListFiltrada();
+                filter = value;
+              }),
+            ),
           ),
         ),
         SizedBox(
