@@ -331,21 +331,30 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
           } else {
             return DataCell(
               Center(
-                child: Container(
-                  width: 100,
-                  height: 26,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: situacao == true ? kSuccessColor : kErrorColor),
-                  child: Center(
-                    child: Text(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    situacao == true
+                        ? const Icon(
+                            Icons.check,
+                            color: kSuccessColor,
+                          )
+                        : const Icon(
+                            Icons.clear,
+                            color: kErrorColor,
+                          ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
                       situacao == true ? 'Aprovado' : 'Pendente',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white),
+                          color:
+                              situacao == true ? kSuccessColor : kErrorColor),
                     ),
-                  ),
+                  ],
                 ),
               ),
             );

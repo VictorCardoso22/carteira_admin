@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //PrimaryColor
-const kPrimaryLightColor = Color(0xFF009892);
+const kPrimaryLightColor = Color(0xFF0D7172);
 const kOnPrimaryLightColor = Color(0xFFFFFFFF);
 const kPrimaryContainerColor = Color(0xFFD5E3FF);
 const kOnPrimaryContainerColor = Color(0xFF001B3F);
@@ -32,9 +32,11 @@ const kOnErrorColor = Color(0xFFFFFFFF);
 const kErrorContainerColor = Color(0xFFFFDAD4);
 const kOnErrorContainerColor = Color(0xFF410001);
 
-//BackgroundColor
-const kBackgroundLightColor = Color(0xFFF7F8FC);
-const kBackgroundDarkColor = Color(0xFF1B1B1D);
+//BackgroundColor IDENTIDADE VISUAL 6CODE
+const kBackgroundLightColor = Color(0xFFEBECEC);
+const kBackgroundDarkColor = Color(0xFF636065);
+const kBackgroundDarkColor2 = Color(0xFF849490);
+const kBackgroundDarkColor3 = Color(0xFF7E868C);
 
 const kOnBackgroundLightColor = Color(0xFF1B1B1D);
 const kOnBackgroundDarkColor = Color(0xFFF4F5F7);

@@ -35,7 +35,6 @@ class _AdminPageState extends State<AdminPage> {
                   )
                 : null,
             body: Container(
-              color: kBackgroundLightColor,
               child: Column(
                 children: [
                   // TopoPage(),

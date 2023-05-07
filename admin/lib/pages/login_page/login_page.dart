@@ -47,8 +47,8 @@ class LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 120),
+            children: [
+              const SizedBox(height: 60),
 
               // Brasão
               Center(
@@ -119,6 +119,7 @@ class LoginPageState extends State<LoginPage> {
                                   type: CustomPrimaryButtonType.fill,
                                 ),
                           const SizedBox(height: 16),
+
                           // Center(
                           //   child: CustomPrimaryButton(
                           //     onPressed: () {},
@@ -132,6 +133,16 @@ class LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 16),
+              Center(
+                child: SizedBox(
+                  width: 250,
+                  child: Image.asset(
+                    'assets/6code.png',
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
             ],
           ),
         ),

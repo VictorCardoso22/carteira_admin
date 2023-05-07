@@ -122,7 +122,7 @@ class _DadosPageState extends State<DadosPage> {
                   controlsBuilder: (context, details) => Column(
                     children: [
                       widget.isCreating
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(),
                             )
                           : CustomPrimaryButton(
@@ -134,7 +134,7 @@ class _DadosPageState extends State<DadosPage> {
                       const SizedBox(height: 10),
                       if (_index != 0)
                         widget.isCreating
-                            ? Text("Enviando...")
+                            ? const Text("Enviando...")
                             : TextButton(
                                 onPressed: details.onStepCancel!,
                                 child: const Text('Voltar')),

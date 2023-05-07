@@ -4,6 +4,8 @@ import 'package:admin/pages/topo_page/topo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
+import '../ui/colors.dart';
+
 class MenuSidebarX extends StatelessWidget {
   MenuSidebarX({
     key,
@@ -53,16 +55,16 @@ class MenuSidebarX extends StatelessWidget {
         ),
       ),
       headerBuilder: (context, extended) {
-        return const Align(
+        return Align(
           // height: 80,
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.center,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 26.0, horizontal: 10),
-            child: Text(
-              '',
-              style: TextStyle(color: accentCanvasColor, fontSize: 22),
-            ),
-          ),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 26.0, horizontal: 10),
+              child: Image.asset(
+                'assets/6codew.png',
+                width: 140,
+              )),
         );
       },
       // headerDivider: divider,
@@ -132,10 +134,10 @@ class Screens extends StatelessWidget {
   }
 }
 
-const primaryColor = Color(0xFFF7F8FC);
-const canvasColor = Color(0xFF363740);
-const scaffoldBackgroundColor = Color(0xFF868896);
-const accentCanvasColor = Color(0xFFDDE2FF);
+const primaryColor = kBackgroundLightColor;
+const canvasColor = kBackgroundDarkColor;
+const scaffoldBackgroundColor = kBackgroundDarkColor2;
+const accentCanvasColor = kBackgroundLightColor;
 const white = Colors.white;
 // final actionColor = const Color(0xFFF4F5F7);
 final divider = Divider(color: white.withOpacity(0.3), height: 2);
