@@ -48,21 +48,29 @@ class HomePageState extends State<HomePage> {
               fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 55),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomCard(
-              titulo: 'Carteiras cadastradas',
-              valor: '${widget.adminPageViewlModel.listOfAlunos.length}',
+        Center(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              runAlignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runSpacing: 10,
+              children: [
+                CustomCard(
+                  titulo: 'Carteiras cadastradas',
+                  valor: '${widget.adminPageViewlModel.listOfAlunos.length}',
+                ),
+                CustomCard(
+                    titulo: 'Carteiras aprovadas',
+                    valor: '${widget.adminPageViewlModel.ativos}'),
+                CustomCard(
+                  titulo: 'Carteiras pendentes',
+                  valor: '${widget.adminPageViewlModel.inativos}',
+                ),
+              ],
             ),
-            CustomCard(
-                titulo: 'Carteiras aprovadas',
-                valor: '${widget.adminPageViewlModel.ativos}'),
-            CustomCard(
-              titulo: 'Carteiras pendentes',
-              valor: '${widget.adminPageViewlModel.inativos}',
-            ),
-          ],
+          ),
         ),
         const SizedBox(height: 42),
         Align(
@@ -75,76 +83,74 @@ class HomePageState extends State<HomePage> {
           ),
         ),
         const SizedBox(height: 42),
-        Container(
-          child: Card(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
-                  child: Row(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          'Ultimos cadastros',
-                          style: TextStyle(
-                            fontSize: 19,
-                            color: Color(0xFF252733),
-                            fontWeight: FontWeight.bold,
-                          ),
+        Card(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
+                child: Row(
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
+                        'Ultimos cadastros',
+                        style: TextStyle(
+                          fontSize: 19,
+                          color: Color(0xFF252733),
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Spacer(),
-                      // SizedBox(
-                      //   width: 185,
-                      //   height: 32,
-                      //   child: TextField(
-                      //     textAlignVertical: TextAlignVertical.center,
-                      //     // label:
-                      //     decoration: InputDecoration(
-                      //         alignLabelWithHint: false,
-                      //         // prefixIcon: Icon(Icons.search),
-                      //         labelText: 'Pesqusiar',
-                      //         border: OutlineInputBorder(),
-                      //         // hintText: 'Pesquisar',
-                      //         suffixIcon: Icon(Icons.search)),
-                      //   ),
-                      // ),
-                    ],
-                  ),
+                    ),
+                    Spacer(),
+                    // SizedBox(
+                    //   width: 185,
+                    //   height: 32,
+                    //   child: TextField(
+                    //     textAlignVertical: TextAlignVertical.center,
+                    //     // label:
+                    //     decoration: InputDecoration(
+                    //         alignLabelWithHint: false,
+                    //         // prefixIcon: Icon(Icons.search),
+                    //         labelText: 'Pesqusiar',
+                    //         border: OutlineInputBorder(),
+                    //         // hintText: 'Pesquisar',
+                    //         suffixIcon: Icon(Icons.search)),
+                    //   ),
+                    // ),
+                  ],
                 ),
-                const Divider(),
-                // table(),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: TabelaCarteirasPage(
-                      adminPageViewlModel: widget.adminPageViewlModel),
+              ),
+              const Divider(),
+              // table(),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: TabelaCarteirasPage(
+                    adminPageViewlModel: widget.adminPageViewlModel),
+              ),
+              const Divider(),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {
+                          // Get.toNamed('/carteiras');
+                          widget.adminPageViewlModel.goToTab(1);
+                        },
+                        child: const Text(
+                          'Ver Todos',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        )),
+                  ],
                 ),
-                const Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 18.0, vertical: 10),
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      TextButton(
-                          onPressed: () {
-                            // Get.toNamed('/carteiras');
-                            widget.adminPageViewlModel.goToTab(1);
-                          },
-                          child: const Text(
-                            'Ver Todos',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          )),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 55),

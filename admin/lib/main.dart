@@ -36,18 +36,24 @@ class MyApp extends StatelessWidget {
         '/home': (_) => AdminPage(),
         '/carteiras': (_) =>
             CarteirasPage(adminPageViewlModel: adminPageViewlModel!),
-        '/cadastro': (_) =>  DadosPage(),
-        '/registro': (_) =>  RegistroCarteiraPage(),
-
+        '/cadastro': (_) => DadosPage(),
+        '/registro': (_) => RegistroCarteiraPage(),
       },
-      scrollBehavior: MaterialScrollBehavior().copyWith(
-        dragDevices: {
-          PointerDeviceKind.mouse,
-          PointerDeviceKind.touch,
-          PointerDeviceKind.stylus,
-          PointerDeviceKind.unknown
-        },
-      ),
+      scrollBehavior: const ScrollBehavior().copyWith(dragDevices: {
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.touch,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.unknown
+      }),
+
+      // const MaterialScrollBehavior().copyWith(
+      //   dragDevices: {
+      // PointerDeviceKind.mouse,
+      // PointerDeviceKind.touch,
+      // PointerDeviceKind.stylus,
+      // PointerDeviceKind.unknown
+      //   },
+      // ),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // Define the default brightness and colors.

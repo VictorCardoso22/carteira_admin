@@ -34,36 +34,34 @@ class _AdminPageState extends State<AdminPage> {
                     ),
                   )
                 : null,
-            body: Container(
-              child: Column(
-                children: [
-                  // TopoPage(),
-                  // MENU LATERAL
-                  Flexible(
-                    child: Row(
-                      children: [
-                        // SIDEBAR
-                        if (!isSmallScreen)
-                          MenuSidebarX(controller: model.controller),
-                        //SIDEBAR
-                        // Container das telas
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 20),
-                            // COMPONENTES DO CORPO, TELAS CHAMADAS PELO MENU
-                            child: Screens(
-                              controller: model.controller,
-                              adminPageViewlModel: model,
-                            ),
+            body: Column(
+              children: [
+                // TopoPage(),
+                // MENU LATERAL
+                Flexible(
+                  child: Row(
+                    children: [
+                      // SIDEBAR
+                      if (!isSmallScreen)
+                        MenuSidebarX(controller: model.controller),
+                      //SIDEBAR
+                      // Container das telas
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 20),
+                          // COMPONENTES DO CORPO, TELAS CHAMADAS PELO MENU
+                          child: Screens(
+                            controller: model.controller,
+                            adminPageViewlModel: model,
                           ),
                         ),
-                        //Container das telas
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                      ),
+                      //Container das telas
+                    ],
+                  ),
+                )
+              ],
             ),
           );
         });

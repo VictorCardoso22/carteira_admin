@@ -10,7 +10,7 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 280,
       height: 135,
       // padding: EdgeInsets.symmetric(vertical: 16),
@@ -23,12 +23,12 @@ class CustomCard extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               titulo!,
-              style: TextStyle(fontSize: 20, color: kSupportColor),
+              style: const TextStyle(fontSize: 20, color: kSupportColor),
             ),
             const SizedBox(height: 15),
             Text(
               valor!,
-              style: TextStyle(fontSize: 40, color: Color(0xFF252733)),
+              style: const TextStyle(fontSize: 40, color: Color(0xFF252733)),
             ),
             const SizedBox(height: 20),
           ],
