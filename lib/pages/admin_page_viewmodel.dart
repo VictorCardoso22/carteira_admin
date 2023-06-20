@@ -14,12 +14,18 @@ class AdminPageViewlModel extends BaseViewModel {
       SidebarXController(selectedIndex: 0, extended: true);
 
   BuildContext baseContext;
+
   List<UserModel> listOfAlunos = [];
   List<UserModel> listOfAlunosAtivos = [];
   List<UserModel> listOfAlunosInativos = [];
+  List<UserModel> listOfAlunosMatutino = [];
+  List<UserModel> listOfAlunosVespertino = [];
+  List<UserModel> listOfAlunosNoturno = [];
   List<UserModel> listFiltradaNome = [];
+
   int ativos = 0;
   int inativos = 0;
+
   HomePage? homePage;
   CarteirasPage? carteirasPage;
 
@@ -77,6 +83,21 @@ class AdminPageViewlModel extends BaseViewModel {
           } else {
             listOfAlunosInativos.add(userModel);
             inativos++;
+          }
+          try {
+            userModel.turno!.forEach((element) {
+              if(element == "matutino"){
+                listOfAlunosMatutino.add(userModel);
+              }
+              if(element == "vespertino"){
+                listOfAlunosVespertino.add(userModel);
+              }
+              if(element == "noturno"){
+                 listOfAlunosNoturno.add(userModel);
+              }
+            });
+          } catch(e){
+            // só para nao travar quando for nulo
           }
         });
         if (controller.selectedIndex == 0) {
