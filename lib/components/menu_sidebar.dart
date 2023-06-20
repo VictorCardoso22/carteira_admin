@@ -135,7 +135,7 @@ class Screens extends StatelessWidget {
 }
 
 const primaryColor = kBackgroundLightColor;
-const canvasColor = kBackgroundDarkColor;
+const canvasColor = kPrimaryLightColor;
 const scaffoldBackgroundColor = kBackgroundDarkColor2;
 const accentCanvasColor = kBackgroundLightColor;
 const white = Colors.white;

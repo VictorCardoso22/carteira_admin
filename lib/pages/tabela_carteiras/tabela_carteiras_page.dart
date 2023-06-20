@@ -152,7 +152,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                                       : kPrimaryLightColor,
                                 ),
                                 child: Center(
-                                    child: Text('Aprovados',
+                                    child: Text('Aprovadas',
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             color: aprovado == true
@@ -349,7 +349,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                       width: 5,
                     ),
                     Text(
-                      situacao == true ? 'Aprovado' : 'Pendente',
+                      situacao == true ? 'Aprovada' : 'Pendente',
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,

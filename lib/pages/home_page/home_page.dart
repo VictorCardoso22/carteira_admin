@@ -4,10 +4,14 @@ import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/tabela_carteiras/tabela_carteiras_page.dart';
+import 'package:admin/ui/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
+
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class HomePage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
@@ -23,19 +27,23 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    // _listCadastros = getCadastros();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
+    List<ListCadastros> getCadastros() {
+      final List<ListCadastros> listCadastros = [
+        ListCadastros(
+            'Aprovadas', widget.adminPageViewlModel.ativos, kPrimaryLightColor),
+        ListCadastros(
+            'Pendentes', widget.adminPageViewlModel.inativos, kSecondaryColor)
+      ];
 
-    // listOfAlunos.forEach((element) {
-    //   // ignore: unrelated_type_equality_checks
-    //   if (element.ativo == true) {
-    //     widget.ativos;
-    //   } else {
-    //     widget.inativos + 1;
-    //   }
-    // });
-
-    // listOfAlunosAtivo.map((e) => ativos = e.ativo.toString());
+      return listCadastros;
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,21 +60,51 @@ class HomePageState extends State<HomePage> {
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
               runSpacing: 10,
               children: [
-                CustomCard(
-                  titulo: 'Carteiras cadastradas',
-                  valor: '${widget.adminPageViewlModel.listOfAlunos.length}',
+                Column(
+                  children: [
+                    CustomCard(
+                      titulo: 'Carteiras cadastradas',
+                      valor:
+                          '${widget.adminPageViewlModel.listOfAlunos.length}',
+                    ),
+                    const SizedBox(height: 16),
+                    CustomCard(
+                        titulo: 'Carteiras aprovadas',
+                        valor: '${widget.adminPageViewlModel.ativos}'),
+                    const SizedBox(height: 16),
+                    CustomCard(
+                      titulo: 'Carteiras pendentes',
+                      valor: '${widget.adminPageViewlModel.inativos}',
+                    ),
+                  ],
                 ),
-                CustomCard(
-                    titulo: 'Carteiras aprovadas',
-                    valor: '${widget.adminPageViewlModel.ativos}'),
-                CustomCard(
-                  titulo: 'Carteiras pendentes',
-                  valor: '${widget.adminPageViewlModel.inativos}',
+                const SizedBox(width: 42),
+                SizedBox(
+                  width: 400,
+                  height: 400,
+                  child: SfCircularChart(
+                    // title: ChartTitle(text: 'Sales by sales person'),
+                    legend: Legend(isVisible: true),
+                    series: <CircularSeries>[
+                      PieSeries<ListCadastros, String>(
+                          explode: true,
+                          explodeIndex: 0,
+                          strokeColor: kPrimaryLightColor,
+                          pointColorMapper: (ListCadastros data, _) =>
+                              data.color,
+                          dataSource: getCadastros(),
+                          xValueMapper: (ListCadastros data, _) => data.status,
+                          yValueMapper: (ListCadastros data, _) => data.qtd,
+                          // dataLabelMapper: (ListCadastros data, _) => data.text,
+                          dataLabelSettings:
+                              const DataLabelSettings(isVisible: true)),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -157,4 +195,11 @@ class HomePageState extends State<HomePage> {
       ],
     );
   }
+}
+
+class ListCadastros {
+  ListCadastros(this.status, this.qtd, [this.color]);
+  final String status;
+  final int qtd;
+  Color? color;
 }
