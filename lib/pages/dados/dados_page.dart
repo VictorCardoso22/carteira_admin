@@ -9,6 +9,7 @@ import 'package:admin/pages/dados/pages/dados_pessoais_page.dart';
 import 'package:admin/pages/dados/pages/instituicao_page.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cross_file/cross_file.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -274,20 +275,20 @@ class _DadosPageState extends State<DadosPage> {
     ///---------------------------------------------------------------------------------------------------///
 
     ///Step 3
-    userModel.rgFrenteAnexo = await addUserImages(
-        file: File(widget.anexoPage!.arquivoRgFrente!.path),
-        nameFile: "rgFrente");
+     userModel.rgFrenteAnexo = await addUserImages(
+         file: XFile(widget.anexoPage!.arquivoRgFrente!.path),
+         nameFile: "rgFrente");
     userModel.rgVersoAnexo = await addUserImages(
-        file: File(widget.anexoPage!.arquivoRgVerso!.path),
+        file: XFile(widget.anexoPage!.arquivoRgVerso!.path),
         nameFile: "rgVerso");
     userModel.fotoAnexo = await addUserImages(
-        file: File(widget.anexoPage!.arquivoFoto!.path),
+        file: XFile(widget.anexoPage!.arquivoFoto!.path),
         nameFile: "fotoPerfil");
     userModel.comprovanteResidenciaAnexo = await addUserImages(
-        file: File(widget.anexoPage!.arquivoComprovanteResidencia!.path),
+        file: XFile(widget.anexoPage!.arquivoComprovanteResidencia!.path),
         nameFile: "comprovanteResidencia");
     userModel.declaracaoEscolarAnexo = await addUserImages(
-        file: File(widget.anexoPage!.arquivoDeclaracaoEscolar!.path),
+        file: XFile(widget.anexoPage!.arquivoDeclaracaoEscolar!.path),
         nameFile: "decalaracaoEscolar");
 
     ///--------------------------------------------------------------------------------------------------///
@@ -303,14 +304,14 @@ class _DadosPageState extends State<DadosPage> {
     }).catchError((error) => print("Failed to add user: $error"));
   }
 
-  Future<String> addUserImages({File? file, nameFile}) async {
+  Future<String> addUserImages({XFile? file, nameFile}) async {
     final _firebaseStorage = FirebaseStorage.instance;
     User? user = FirebaseAuth.instance.currentUser;
     //Upload to Firebase
     var snapshot = await _firebaseStorage
         .ref()
         .child('${user!.uid}/$nameFile')
-        .putFile(file!);
+        .putData(await file!.readAsBytes());
     var downloadUrl = await snapshot.ref.getDownloadURL();
     setState(() {
       // imageUrl = downloadUrl;

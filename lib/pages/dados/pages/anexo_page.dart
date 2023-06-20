@@ -5,10 +5,8 @@ import 'dart:typed_data';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'widgets/anexo.dart';
-import 'widgets/preview_page.dart';
 
 class AnexoPage extends StatefulWidget {
   AnexoPage({Key? key}) : super(key: key);
