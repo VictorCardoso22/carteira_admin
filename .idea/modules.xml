@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/carteira_admin.iml" filepath="$PROJECT_DIR$/.idea/carteira_admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/admin.iml" filepath="$PROJECT_DIR$/admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/admin_android.iml" filepath="$PROJECT_DIR$/android/admin_android.iml" />
     </modules>
   </component>
 </project>
