@@ -35,7 +35,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get:
   cpf_cnpj_validator: ^2.0.0
-  stacked: ^2.2.8
+  stacked: ^3.4.0
   sidebarx: ^0.14.0
   gallery_image_viewer: ^1.2.0
   firebase_core: ^2.5.0
