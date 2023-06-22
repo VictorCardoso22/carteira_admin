@@ -43,19 +43,21 @@ class LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+          color: kBackgroundLightColor,
           width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 50),
 
               // Brasão
               Center(
                 child: SizedBox(
-                  width: 250,
+                  width: 400,
                   child: Image.asset(
-                    'assets/logo.png',
+                    'assets/e-cart.png',
                   ),
                 ),
               ),
@@ -63,7 +65,6 @@ class LoginPageState extends State<LoginPage> {
               const SizedBox(height: kMarginDefault),
 
               Card(
-                margin: const EdgeInsets.all(kMarginDefault),
                 color: Colors.white,
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -72,32 +73,34 @@ class LoginPageState extends State<LoginPage> {
                   ),
                   constraints: const BoxConstraints(
                     minWidth: 300.0,
-                    maxWidth: 368.0,
-                    maxHeight: 420,
+                    maxWidth: 380.0,
+                    maxHeight: 400,
                   ),
                   child: Form(
                     child: AutofillGroup(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
+                          const SizedBox(height: 22),
                           const Text(
-                            'CARTEIRA ESTUDANTIL',
+                            'LOGIN',
                             style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: kPrimaryLightColor),
                           ),
-                          const SizedBox(height: kMarginDefault),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 26),
                           RoundedInputField(
                             labelText: 'Email',
                             controller: usernameController,
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 18),
                           RoundedPasswordField(
                             controller: passwordController,
                             onEditingComplete: trySignin,
                           ),
+                          const SizedBox(height: 8),
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
@@ -106,7 +109,7 @@ class LoginPageState extends State<LoginPage> {
                                   style: TextStyle(color: kPrimaryDarkColor)),
                             ),
                           ),
-                          const SizedBox(height: kMarginHalf),
+                          const SizedBox(height: 36),
                           isLoading
                               ? const Center(
                                   child: CircularProgressIndicator(),
@@ -133,14 +136,24 @@ class LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
-              Center(
-                child: SizedBox(
-                  width: 250,
-                  child: Image.asset(
-                    'assets/6code.png',
+              const SizedBox(height: 60),
+              Wrap(
+                runSpacing: 22,
+                spacing: 22,
+                children: [
+                  SizedBox(
+                    width: 150,
+                    child: Image.asset(
+                      'assets/logo.png',
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    width: 150,
+                    child: Image.asset(
+                      'assets/6code.png',
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 40),
             ],

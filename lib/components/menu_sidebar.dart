@@ -48,6 +48,7 @@ class MenuSidebarX extends StatelessWidget {
           size: 25,
         ),
       ),
+
       extendedTheme: const SidebarXTheme(
         width: 250,
         decoration: BoxDecoration(
@@ -62,13 +63,12 @@ class MenuSidebarX extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 26.0, horizontal: 10),
               child: Image.asset(
-                'assets/6codew.png',
-                width: 140,
+                'assets/e-cart1.png',
+                width: 180,
               )),
         );
       },
-      // headerDivider: divider,
-      footerDivider: divider,
+      headerDivider: divider,
       items: [
         const SidebarXItem(
           icon: Icons.dashboard_rounded,
@@ -90,6 +90,55 @@ class MenuSidebarX extends StatelessWidget {
           },
         ),
       ],
+      // footerDivider: divider,
+      footerBuilder: (context, extended) {
+        return Wrap(
+          runSpacing: 16,
+          spacing: 16,
+          children: [
+            Align(
+              // height: 80,
+              alignment: Alignment.center,
+              child: Image.asset(
+                'assets/logo.png',
+                width: 100,
+              ),
+            ),
+            Align(
+              // height: 80,
+              alignment: Alignment.center,
+              child: Image.asset(
+                'assets/6codew.png',
+                width: 100,
+              ),
+            ),
+            divider,
+          ],
+        );
+      },
+      // footerItems: [
+      //   SidebarXItem(
+
+      //     iconWidget: Align(
+      //       // height: 80,
+      //       alignment: Alignment.center,
+      //       child: Image.asset(
+      //         'assets/6codew.png',
+      //         width: 80,
+      //       ),
+      //     ),
+      //   ),
+      //   SidebarXItem(
+      //     iconWidget: Align(
+      //       // height: 80,
+      //       alignment: Alignment.center,
+      //       child: Image.asset(
+      //         'assets/logo.png',
+      //         width: 80,
+      //       ),
+      //     ),
+      //   )
+      // ],
     );
   }
 }

@@ -37,12 +37,14 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
-    List<UserModel> listFiltrada = widget.adminPageViewlModel.listFiltradaNome;
+    List<UserModel> listOfAlunos =
+        widget.adminPageViewlModel.listOfAlunos.reversed.toList();
+    List<UserModel> listFiltrada =
+        widget.adminPageViewlModel.listFiltradaNome.reversed.toList();
     List<UserModel> listAprovados =
-        widget.adminPageViewlModel.listOfAlunosAtivos;
+        widget.adminPageViewlModel.listOfAlunosAtivos.reversed.toList();
     List<UserModel> listPendentes =
-        widget.adminPageViewlModel.listOfAlunosInativos;
+        widget.adminPageViewlModel.listOfAlunosInativos.reversed.toList();
 
     return Column(
       children: [

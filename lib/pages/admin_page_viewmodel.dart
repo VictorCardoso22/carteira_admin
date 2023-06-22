@@ -77,6 +77,7 @@ class AdminPageViewlModel extends BaseViewModel {
         querySnapshot.docs.forEach((element) {
           UserModel userModel = UserModel.fromJson(element.data());
           listOfAlunos.add(userModel);
+          listOfAlunos.reversed;
           if (userModel.ativo == true) {
             listOfAlunosAtivos.add(userModel);
             ativos++;
@@ -86,17 +87,17 @@ class AdminPageViewlModel extends BaseViewModel {
           }
           try {
             userModel.turno!.forEach((element) {
-              if(element == "matutino"){
+              if (element == "matutino") {
                 listOfAlunosMatutino.add(userModel);
               }
-              if(element == "vespertino"){
+              if (element == "vespertino") {
                 listOfAlunosVespertino.add(userModel);
               }
-              if(element == "noturno"){
-                 listOfAlunosNoturno.add(userModel);
+              if (element == "noturno") {
+                listOfAlunosNoturno.add(userModel);
               }
             });
-          } catch(e){
+          } catch (e) {
             // só para nao travar quando for nulo
           }
         });

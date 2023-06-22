@@ -33,7 +33,7 @@ const kErrorContainerColor = Color(0xFFFFDAD4);
 const kOnErrorContainerColor = Color(0xFF410001);
 
 //BackgroundColor IDENTIDADE VISUAL 6CODE
-const kBackgroundLightColor = Color(0xFFEBECEC);
+const kBackgroundLightColor = Color(0xFFebece0);
 const kBackgroundDarkColor = Color(0xFF636065);
 const kBackgroundDarkColor2 = Color(0xFF849490);
 const kBackgroundDarkColor3 = Color(0xFF7E868C);
