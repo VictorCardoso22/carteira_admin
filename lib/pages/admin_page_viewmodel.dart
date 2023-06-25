@@ -77,7 +77,7 @@ class AdminPageViewlModel extends BaseViewModel {
         querySnapshot.docs.forEach((element) {
           UserModel userModel = UserModel.fromJson(element.data());
           listOfAlunos.add(userModel);
-          listOfAlunos.reversed;
+
           if (userModel.ativo == true) {
             listOfAlunosAtivos.add(userModel);
             ativos++;
@@ -109,6 +109,9 @@ class AdminPageViewlModel extends BaseViewModel {
 
         notifyListeners();
       }
+      listOfAlunos = listOfAlunos.reversed.toList();
+      listOfAlunosAtivos = listOfAlunosAtivos.reversed.toList();
+      listOfAlunosInativos = listOfAlunosInativos.reversed.toList();
     });
   }
 }

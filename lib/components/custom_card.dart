@@ -15,6 +15,10 @@ class CustomCard extends StatelessWidget {
       height: 80,
       // padding: EdgeInsets.symmetric(vertical: 16),
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.circular(4.0), // Defina o raio desejado aqui
+        ),
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

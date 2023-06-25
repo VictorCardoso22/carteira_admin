@@ -13,7 +13,9 @@ import 'package:easy_search_bar/easy_search_bar.dart';
 
 class TabelaCarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
-  TabelaCarteirasPage({Key? key, required this.adminPageViewlModel})
+  int? tamanho;
+  TabelaCarteirasPage(
+      {Key? key, required this.adminPageViewlModel, this.tamanho})
       : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
   bool aprovado = false;
   bool pendente = false;
   bool todos = true;
+  List<UserModel>? listToAluno;
 
   @override
   void initState() {
@@ -37,14 +40,20 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<UserModel> listOfAlunos =
-        widget.adminPageViewlModel.listOfAlunos.reversed.toList();
-    List<UserModel> listFiltrada =
-        widget.adminPageViewlModel.listFiltradaNome.reversed.toList();
+    List<UserModel> listOfAlunos = widget.adminPageViewlModel.listOfAlunos;
+    List<UserModel> listFiltrada = widget.adminPageViewlModel.listFiltradaNome;
     List<UserModel> listAprovados =
-        widget.adminPageViewlModel.listOfAlunosAtivos.reversed.toList();
+        widget.adminPageViewlModel.listOfAlunosAtivos;
     List<UserModel> listPendentes =
-        widget.adminPageViewlModel.listOfAlunosInativos.reversed.toList();
+        widget.adminPageViewlModel.listOfAlunosInativos;
+
+    if (aprovado) {
+      listToAluno = listAprovados;
+    } else if (pendente) {
+      listToAluno = listPendentes;
+    } else {
+      listToAluno = listOfAlunos;
+    }
 
     return Column(
       children: [
@@ -112,90 +121,99 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                     label: Expanded(
                       child: Row(
                         children: [
-                          InkWell(
-                            child: Container(
-                                height: 38,
-                                padding: const EdgeInsets.only(
-                                    left: 18, right: 12, bottom: 4, top: 4),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(40),
-                                    bottomLeft: Radius.circular(40),
+                          Material(
+                            elevation: todos == true ? 1 : 2,
+                            child: InkWell(
+                              child: Container(
+                                  height: 38,
+                                  padding: const EdgeInsets.only(
+                                      left: 18, right: 12, bottom: 4, top: 4),
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4),
+                                      bottomLeft: Radius.circular(4),
+                                    ),
+                                    color: todos == true
+                                        ? kBackgroundLightColor
+                                        : kPrimaryLightColor,
                                   ),
-                                  color: todos == true
-                                      ? kPrimaryContainerColor
-                                      : kPrimaryLightColor,
-                                ),
-                                child: Center(
-                                    child: Text(
-                                  'Todos',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      color: todos == true
-                                          ? kPrimaryLightColor
-                                          : kOnPrimaryLightColor),
-                                ))),
-                            onTap: () {
-                              setState(() {
-                                todos = true;
-                                aprovado = false;
-                                pendente = false;
-                              });
-                            },
+                                  child: Center(
+                                      child: Text(
+                                    'Todos',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: todos == true
+                                            ? kPrimaryLightColor
+                                            : kBackgroundLightColor),
+                                  ))),
+                              onTap: () {
+                                setState(() {
+                                  todos = true;
+                                  aprovado = false;
+                                  pendente = false;
+                                });
+                              },
+                            ),
                           ),
-                          InkWell(
-                            child: Container(
-                                height: 38,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 08),
-                                decoration: BoxDecoration(
-                                  color: aprovado == true
-                                      ? kPrimaryContainerColor
-                                      : kPrimaryLightColor,
-                                ),
-                                child: Center(
-                                    child: Text('Aprovadas',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            color: aprovado == true
-                                                ? kPrimaryLightColor
-                                                : kOnPrimaryLightColor)))),
-                            onTap: () {
-                              setState(() {
+                          Material(
+                            elevation: aprovado == true ? 1 : 2,
+                            child: InkWell(
+                              child: Container(
+                                  height: 38,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 08),
+                                  decoration: BoxDecoration(
+                                    color: aprovado == true
+                                        ? kBackgroundLightColor
+                                        : kPrimaryLightColor,
+                                  ),
+                                  child: Center(
+                                      child: Text('Aprovadas',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: aprovado == true
+                                                  ? kPrimaryLightColor
+                                                  : kBackgroundLightColor)))),
+                              onTap: () {
+                                setState(() {
+                                  todos = false;
+                                  aprovado = true;
+                                  pendente = false;
+                                });
+                              },
+                            ),
+                          ),
+                          Material(
+                            elevation: pendente == true ? 1 : 2,
+                            child: InkWell(
+                              child: Container(
+                                  height: 38,
+                                  padding: const EdgeInsets.only(
+                                      left: 12, right: 18, bottom: 4, top: 4),
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(4),
+                                      bottomRight: Radius.circular(4),
+                                    ),
+                                    color: pendente == true
+                                        ? kBackgroundLightColor
+                                        : kPrimaryLightColor,
+                                  ),
+                                  child: Center(
+                                      child: Text('Pendentes',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: pendente == true
+                                                  ? kPrimaryLightColor
+                                                  : kBackgroundLightColor)))),
+                              onTap: () {
                                 todos = false;
-                                aprovado = true;
-                                pendente = false;
-                              });
-                            },
-                          ),
-                          InkWell(
-                            child: Container(
-                                height: 38,
-                                padding: const EdgeInsets.only(
-                                    left: 12, right: 18, bottom: 4, top: 4),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(40),
-                                    bottomRight: Radius.circular(40),
-                                  ),
-                                  color: pendente == true
-                                      ? kPrimaryContainerColor
-                                      : kPrimaryLightColor,
-                                ),
-                                child: Center(
-                                    child: Text('Pendentes',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            color: pendente == true
-                                                ? kPrimaryLightColor
-                                                : kOnPrimaryLightColor)))),
-                            onTap: () {
-                              todos = false;
-                              aprovado = false;
-                              pendente = true;
+                                aprovado = false;
+                                pendente = true;
 
-                              setState(() {});
-                            },
+                                setState(() {});
+                              },
+                            ),
                           )
                         ],
                       ),
@@ -217,7 +235,12 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                                 turno: listPendentes[index].turno,
                                 id: index,
                               );
-                            })
+                            }).sublist(
+                              0,
+                              (widget.tamanho != null &&
+                                      widget.tamanho! <= listPendentes.length)
+                                  ? widget.tamanho
+                                  : listPendentes.length)
                           : <DataRow>[
                               DataRow(
                                   cells: List<DataCell>.generate(
@@ -238,7 +261,12 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                                 turno: listAprovados[index].turno,
                                 id: index,
                               );
-                            })
+                            }).sublist(
+                              0,
+                              (widget.tamanho != null &&
+                                      widget.tamanho! <= listAprovados.length)
+                                  ? widget.tamanho
+                                  : listAprovados.length)
                           : <DataRow>[
                               DataRow(
                                   cells: List<DataCell>.generate(
@@ -258,7 +286,12 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                                 turno: listOfAlunos[index].turno,
                                 id: index,
                               );
-                            })
+                            }).sublist(
+                              0,
+                              (widget.tamanho != null &&
+                                      widget.tamanho! <= listOfAlunos.length)
+                                  ? widget.tamanho
+                                  : listOfAlunos.length)
                           : <DataRow>[
                               DataRow(
                                   cells: List<DataCell>.generate(
@@ -319,12 +352,11 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
                     {
                       return "";
                     }
-                    break;
                 }
               }(),
             ), onTap: () {
               Get.to(RegistroCarteiraPage(
-                user: widget.adminPageViewlModel.listOfAlunos[id],
+                user: listToAluno![id],
               ))!
                   .then((value) {
                 setState(() {

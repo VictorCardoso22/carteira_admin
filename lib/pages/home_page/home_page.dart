@@ -15,8 +15,8 @@ import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class HomePage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
-  HomePage({Key? key, required this.adminPageViewlModel});
   HomePageState? homePageState;
+  HomePage({Key? key, required this.adminPageViewlModel});
 
   @override
   State<HomePage> createState() {
@@ -26,25 +26,25 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  List<ListCadastros> getCadastros() {
+    final List<ListCadastros> listCadastros = [
+      ListCadastros(
+          'Aprovadas', widget.adminPageViewlModel.ativos, kPrimaryLightColor),
+      ListCadastros(
+          'Pendentes', widget.adminPageViewlModel.inativos, kSecondaryColor)
+    ];
+    setState(() {});
+    return listCadastros;
+  }
+
   @override
   void initState() {
-    // _listCadastros = getCadastros();
+    getCadastros();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<ListCadastros> getCadastros() {
-      final List<ListCadastros> listCadastros = [
-        ListCadastros(
-            'Aprovadas', widget.adminPageViewlModel.ativos, kPrimaryLightColor),
-        ListCadastros(
-            'Pendentes', widget.adminPageViewlModel.inativos, kSecondaryColor)
-      ];
-
-      return listCadastros;
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -166,7 +166,8 @@ class HomePageState extends State<HomePage> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: TabelaCarteirasPage(
-                    adminPageViewlModel: widget.adminPageViewlModel),
+                    adminPageViewlModel: widget.adminPageViewlModel,
+                    tamanho: 10),
               ),
               const Divider(),
               Padding(
