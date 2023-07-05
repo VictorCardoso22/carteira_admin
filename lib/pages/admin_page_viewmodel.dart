@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/carterias/carteiras_page.dart';
 import 'package:admin/pages/dados/dados_page.dart';
@@ -29,7 +31,7 @@ class AdminPageViewlModel extends BaseViewModel {
   HomePage? homePage;
   CarteirasPage? carteirasPage;
 
-  AdminPageViewlModel(BuildContext this.baseContext) {
+  AdminPageViewlModel(this.baseContext) {
     homePage = HomePage(adminPageViewlModel: this);
     carteirasPage = CarteirasPage(adminPageViewlModel: this);
   }
@@ -74,7 +76,7 @@ class AdminPageViewlModel extends BaseViewModel {
         .get()
         .then((QuerySnapshot querySnapshot) {
       if (querySnapshot.size > 0) {
-        querySnapshot.docs.forEach((element) {
+        for (var element in querySnapshot.docs) {
           UserModel userModel = UserModel.fromJson(element.data());
           listOfAlunos.add(userModel);
 
@@ -86,7 +88,7 @@ class AdminPageViewlModel extends BaseViewModel {
             inativos++;
           }
           try {
-            userModel.turno!.forEach((element) {
+            for (var element in userModel.turno!) {
               if (element == "matutino") {
                 listOfAlunosMatutino.add(userModel);
               }
@@ -96,11 +98,11 @@ class AdminPageViewlModel extends BaseViewModel {
               if (element == "noturno") {
                 listOfAlunosNoturno.add(userModel);
               }
-            });
+            }
           } catch (e) {
             // só para nao travar quando for nulo
           }
-        });
+        }
         if (controller.selectedIndex == 0) {
           homePage!.homePageState?.setState(() {});
         } else if (controller.selectedIndex == 1) {
@@ -112,6 +114,11 @@ class AdminPageViewlModel extends BaseViewModel {
       listOfAlunos = listOfAlunos.reversed.toList();
       listOfAlunosAtivos = listOfAlunosAtivos.reversed.toList();
       listOfAlunosInativos = listOfAlunosInativos.reversed.toList();
+      // listFiltradaNome = listFiltradaNome.reversed.toList();
+
+      print(listOfAlunosMatutino.length);
+      print(listOfAlunosVespertino.length);
+      print(listOfAlunosNoturno.length);
     });
   }
 }

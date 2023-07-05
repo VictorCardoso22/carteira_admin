@@ -45,11 +45,11 @@ class UserModel {
     rgFrenteAnexo = json['rgFrenteAnexo'];
     rgVersoAnexo = json['rgVersoAnexo'];
     curso = json['curso'];
-    turno = json['turno'];
+    turno = json['turno'] ?? [''];
     fotoAnexo = json['fotoAnexo'];
     declaracaoEscolarAnexo = json['declaracaoEscolarAnexo'];
     comprovanteResidenciaAnexo = json['comprovanteResidenciaAnexo'];
-    instituicao = json['instituicao'];
+    instituicao = json['instituicao'] ?? '-';
     ativo = json['ativo'];
     timeStampCriacao = json['timeStampCriacao'];
     validade = json['validade'];

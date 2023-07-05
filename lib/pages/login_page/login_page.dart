@@ -4,12 +4,10 @@ import 'package:admin/components/rounded_password_field.dart';
 import 'package:admin/model/user.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../ui/dimens.dart';
@@ -17,6 +15,8 @@ import '../../common_codes.dart';
 
 /// Tela de login
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return LoginPageState();
@@ -27,8 +27,8 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   bool isLoading = false;
 
-  TextEditingController usernameController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   void initState() {
     initializeDefault();

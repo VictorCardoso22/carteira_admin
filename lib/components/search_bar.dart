@@ -278,7 +278,7 @@ class _SearchBarState extends State<SearchBar> with TickerProviderStateMixin {
     }
     if (!_hasOpenedOverlay &&
         (widget.suggestions != null || widget.asyncSuggestions != null)) {
-      Overlay.of(context)!.insert(_overlayEntry!);
+      Overlay.of(context).insert(_overlayEntry!);
       setState(() => _hasOpenedOverlay = true);
     }
   }
@@ -355,7 +355,7 @@ class _SearchBarState extends State<SearchBar> with TickerProviderStateMixin {
 
     TextStyle? titleTextStyle = widget.titleTextStyle ??
         appBarTheme.titleTextStyle ??
-        theme.textTheme.headline6!.copyWith(color: foregroundColor);
+        theme.textTheme.titleLarge!.copyWith(color: foregroundColor);
 
     double? elevation = widget.elevation ?? appBarTheme.elevation ?? 5;
 
@@ -413,26 +413,21 @@ class _SearchBarState extends State<SearchBar> with TickerProviderStateMixin {
                                         children: [
                                           Visibility(
                                               visible:
-                                                  false, //scaffold!.hasDrawer,
-                                              child: IconTheme(
-                                                  data: iconTheme,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 10),
-                                                    child: IconButton(
-                                                        icon: const Icon(
-                                                            Icons.menu),
-                                                        onPressed: () =>
-                                                            scaffold!
-                                                                .openDrawer(),
-                                                        tooltip:
-                                                            MaterialLocalizations
-                                                                    .of(context)
-                                                                .openAppDrawerTooltip),
-                                                  )),
+                                                  false,
                                               replacement: Visibility(
                                                   visible: canPop,
+                                                  replacement: Visibility(
+                                                    visible:
+                                                        widget.leading != null,
+                                                    replacement:
+                                                        const SizedBox(),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 10),
+                                                      child: widget.leading,
+                                                    ),
+                                                  ),
                                                   child: IconTheme(
                                                     data: iconTheme,
                                                     child: Padding(
@@ -449,18 +444,23 @@ class _SearchBarState extends State<SearchBar> with TickerProviderStateMixin {
                                                                   .of(context)
                                                               .backButtonTooltip),
                                                     ),
-                                                  ),
-                                                  replacement: Visibility(
-                                                    visible:
-                                                        widget.leading != null,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 10),
-                                                      child: widget.leading,
-                                                    ),
-                                                    replacement:
-                                                        const SizedBox(),
+                                                  )), //scaffold!.hasDrawer,
+                                              child: IconTheme(
+                                                  data: iconTheme,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 10),
+                                                    child: IconButton(
+                                                        icon: const Icon(
+                                                            Icons.menu),
+                                                        onPressed: () =>
+                                                            scaffold!
+                                                                .openDrawer(),
+                                                        tooltip:
+                                                            MaterialLocalizations
+                                                                    .of(context)
+                                                                .openAppDrawerTooltip),
                                                   ))),
                                           Expanded(
                                               child: Container(

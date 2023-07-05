@@ -4,16 +4,14 @@ import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
 import 'package:admin/ui/colors.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 
 class TabelaCarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
   int? tamanho;
+
   TabelaCarteirasPage(
       {Key? key, required this.adminPageViewlModel, this.tamanho})
       : super(key: key);
@@ -23,13 +21,13 @@ class TabelaCarteirasPage extends StatefulWidget {
 }
 
 class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
-  TextEditingController textEditingController = new TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
   String filter = "";
   bool itemFilter = true;
+  List<UserModel>? listToAluno;
   bool aprovado = false;
   bool pendente = false;
   bool todos = true;
-  List<UserModel>? listToAluno;
 
   @override
   void initState() {
@@ -51,6 +49,8 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
       listToAluno = listAprovados;
     } else if (pendente) {
       listToAluno = listPendentes;
+    } else if (filter != "") {
+      listToAluno = listFiltrada;
     } else {
       listToAluno = listOfAlunos;
     }
@@ -64,9 +64,10 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
           child: Scaffold(
             appBar: EasySearchBar(
               isFloating: true,
-              title: const Text(''),
+              title: Container(
+                  alignment: Alignment.centerRight, child: const Text('')),
               leading: null,
-              searchHintText: 'Pesquisar por nome',
+              searchHintText: 'Pesquisar por nome ou instituição de ensino',
               elevation: 0,
               iconTheme: null,
               backgroundColor: kOnPrimaryLightColor,
@@ -402,12 +403,13 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
 
   geraListFiltrada() {
     widget.adminPageViewlModel.listFiltradaNome.clear();
-    widget.adminPageViewlModel.listOfAlunos.forEach((element) {
+    for (var element in widget.adminPageViewlModel.listOfAlunos) {
       itemFilter =
-          element.nomeCompleto!.toLowerCase().contains(filter.toLowerCase());
+          element.nomeCompleto!.toLowerCase().contains(filter.toLowerCase()) ||
+              element.instituicao!.toLowerCase().contains(filter.toLowerCase());
       if (itemFilter) {
         widget.adminPageViewlModel.listFiltradaNome.add(element);
       }
-    });
+    }
   }
 }

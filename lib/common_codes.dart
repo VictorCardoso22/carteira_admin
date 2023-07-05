@@ -7,7 +7,7 @@ class DataUser {
 }
 
 toastAviso(String aviso, Color color, BuildContext context) {
-  debugPrint("${color.toHex()}");
+  debugPrint(color.toHex());
   Fluttertoast.showToast(
       msg: aviso,
       webPosition: "center",
@@ -53,7 +53,7 @@ AlertDialog buildAlertDialog(
     },
   );
   publicaButton =
-      TextButton(child: Text(aceitar!), onPressed: onPressedConfirma);
+      TextButton(onPressed: onPressedConfirma, child: Text(aceitar!));
 
   AlertDialog alert = AlertDialog(
     title: Text(titulo!),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class AdminPage extends StatefulWidget {
-  AdminPage({Key? key}) : super(key: key);
+  const AdminPage({Key? key}) : super(key: key);
 
   @override
   State<AdminPage> createState() => _AdminPageState();

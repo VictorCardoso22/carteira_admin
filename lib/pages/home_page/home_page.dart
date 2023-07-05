@@ -1,22 +1,16 @@
-import 'package:admin/common_codes.dart';
 import 'package:admin/components/custom_card.dart';
 import 'package:admin/components/custom_primary_button.dart';
-import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/tabela_carteiras/tabela_carteiras_page.dart';
 import 'package:admin/ui/colors.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:stacked/stacked.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class HomePage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
   HomePageState? homePageState;
-  HomePage({Key? key, required this.adminPageViewlModel});
+  HomePage({super.key, required this.adminPageViewlModel});
 
   @override
   State<HomePage> createState() {
@@ -126,11 +120,10 @@ class HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
                 child: Row(
-                  children: const [
+                  children: [
                     Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Text(

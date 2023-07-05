@@ -1,9 +1,8 @@
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/tabela_carteiras/tabela_carteiras_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
+// ignore: must_be_immutable
 class CarteirasPage extends StatefulWidget {
   AdminPageViewlModel adminPageViewlModel;
   CarteirasPage({Key? key, required this.adminPageViewlModel})
@@ -11,6 +10,7 @@ class CarteirasPage extends StatefulWidget {
   CarteirasPageState? carteirasPageState;
 
   @override
+  // ignore: no_logic_in_create_state
   State<CarteirasPage> createState() {
     carteirasPageState = CarteirasPageState();
     return carteirasPageState!;

@@ -27,12 +27,12 @@ class PreviewPage extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                        padding: EdgeInsets.all(32),
+                        padding: const EdgeInsets.all(32),
                         child: CircleAvatar(
                           radius: 32,
                           backgroundColor: Colors.black.withOpacity(0.5),
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.check,
                               color: Colors.white,
                               size: 30,
@@ -45,12 +45,12 @@ class PreviewPage extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                        padding: EdgeInsets.all(32),
+                        padding: const EdgeInsets.all(32),
                         child: CircleAvatar(
                           radius: 32,
                           backgroundColor: Colors.black.withOpacity(0.5),
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.close,
                               color: Colors.white,
                               size: 30,

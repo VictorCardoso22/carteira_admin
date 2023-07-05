@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/foundation.dart';
@@ -121,7 +119,7 @@ class _AnexoPageState extends State<AnexoPage> {
                           style: TextStyle(color: kPrimaryDarkColor),
                         )),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -151,8 +149,8 @@ class _AnexoPageState extends State<AnexoPage> {
             ],
           ),
         ),
-        SizedBox(height: 28),
-        Container(
+        const SizedBox(height: 28),
+        SizedBox(
           width: 382,
           height: 120,
           child: ListView(
@@ -194,7 +192,7 @@ class _AnexoPageState extends State<AnexoPage> {
                                 style: TextStyle(color: kPrimaryDarkColor),
                               )),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         SizedBox(
                           // width: 300,
                           height: 40,
@@ -266,7 +264,7 @@ class _AnexoPageState extends State<AnexoPage> {
                                 style: TextStyle(color: kPrimaryDarkColor),
                               )),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -332,7 +330,7 @@ class _AnexoPageState extends State<AnexoPage> {
                           style: TextStyle(color: kPrimaryDarkColor),
                         )),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -397,7 +395,7 @@ class _AnexoPageState extends State<AnexoPage> {
                           style: TextStyle(color: kPrimaryDarkColor),
                         )),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

@@ -1,4 +1,3 @@
-import 'package:admin/components/menu_sidebar.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ class _TopoPageState extends State<TopoPage> {
                   color: kPrimaryLightColor,
                   fontSize: 28,
                   fontWeight: FontWeight.bold)),
-          Spacer(),
+          const Spacer(),
           const SizedBox(width: 10),
           _icon(
               heightBox: 40, icon: Icons.notifications_none, onPressed: () {}),
@@ -59,7 +58,7 @@ class _TopoPageState extends State<TopoPage> {
             color: kOnPrimaryContainerColor,
             size: 25,
           ),
-          label: Text(""),
+          label: const Text(""),
         ));
   }
 
@@ -67,13 +66,13 @@ class _TopoPageState extends State<TopoPage> {
     String? imagePerfil,
     String? name,
   }) {
-    String? _name = name;
+    String? name0 = name;
 
     return Row(
       children: [
         Container(
             child: Text(
-          _name!,
+          name0!,
         )),
         const SizedBox(width: 18),
         SizedBox(

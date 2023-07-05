@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:admin/common_codes.dart';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class DadosPessoaisPage extends StatefulWidget {
@@ -26,11 +24,11 @@ class DadosPessoaisPage extends StatefulWidget {
   TextEditingController textEditingControllerEmail = TextEditingController();
   TextEditingController textEditingControllerSenha = TextEditingController();
 
-  var maskFormatterCPF = new MaskTextInputFormatter(
+  var maskFormatterCPF = MaskTextInputFormatter(
       mask: '###.###.###-##', filter: {"#": RegExp(r'[0-9]')});
-  var maskFormatterCEP = new MaskTextInputFormatter(
+  var maskFormatterCEP = MaskTextInputFormatter(
       mask: '#####-###', filter: {"#": RegExp(r'[0-9]')});
-  var maskFormatterDataNascimento = new MaskTextInputFormatter(
+  var maskFormatterDataNascimento = MaskTextInputFormatter(
       mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
 
   DadosPessoaisPage({

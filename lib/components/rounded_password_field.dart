@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -7,19 +9,20 @@ class RoundedPasswordField extends StatelessWidget {
   void Function()? onEditingComplete;
   final bool readOnly;
   //final ValueChanged<String> onChanged;
-   RoundedPasswordField({
-    key,
-    this.readOnly = false,
-    this.controller,
-    this.validator,
-    this.onEditingComplete
-    //this.onChanged,
-  }) : super(key: key);
+  RoundedPasswordField(
+      {key,
+      this.readOnly = false,
+      this.controller,
+      this.validator,
+      this.onEditingComplete
+      //this.onChanged,
+      })
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      autofillHints: [AutofillHints.password],
+      autofillHints: const [AutofillHints.password],
       obscureText: true,
       //onChanged: onChanged,
       validator: validator,
@@ -35,7 +38,7 @@ class RoundedPasswordField extends StatelessWidget {
       cursorColor: kPrimaryDarkColor,
       decoration: InputDecoration(
         labelText: 'Senha',
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
         filled: true,
         //fillColor: kSupportLightColor.withAlpha(60),
         prefixIcon:

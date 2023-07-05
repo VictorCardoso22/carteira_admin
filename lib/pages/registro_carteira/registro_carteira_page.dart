@@ -1,6 +1,5 @@
 import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/model/user.dart';
-import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:admin/ui/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -75,7 +74,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +84,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                             height: 180,
                             child: Image.network("${userModel!.fotoAnexo}"),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +94,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       const Text(
                         'DADOS PESSOAIS ',
                         style: TextStyle(
@@ -113,26 +112,26 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('CPF'),
-                                SizedBox(width: 20),
+                                const Text('CPF'),
+                                const SizedBox(width: 20),
                                 Text('${userModel!.cpf}'),
                               ],
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Expanded(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('RG'),
+                                const Text('RG'),
                                 Text('${userModel!.rg}'),
                               ],
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +141,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Data de nascimento:'),
+                                const Text('Data de nascimento:'),
                                 Text('${userModel!.dataNascimento}'),
                               ],
                             ),
@@ -152,7 +151,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                       ),
                       const SizedBox(height: 20),
 
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       const Text(
                         'ENDEREÇO',
                         style: TextStyle(
@@ -161,83 +160,16 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                             fontWeight: FontWeight.bold),
                       ),
                       const Divider(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Text('CEP'),
-                                SizedBox(width: 20),
-                                Text('${userModel!.endereco}'),
-                              ],
-                            ),
-                          ),
-                        ],
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.zero,
+                        child: Text(
+                          '${userModel!.endereco}',
+                          textAlign: TextAlign.left,
+                        ),
                       ),
-                      // SizedBox(height: 20),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.start,
-                      //   crossAxisAlignment: CrossAxisAlignment.start,
-                      //   children: [
-                      //     Expanded(
-                      //       child: Column(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         crossAxisAlignment: CrossAxisAlignment.start,
-                      //         children: [
-                      //           Text('Logradouro'),
-                      //           SizedBox(width: 20),
-                      //           Text('${userModel!.endereco}'),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //     SizedBox(width: 20),
-                      //     Expanded(
-                      //       child: Column(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         crossAxisAlignment: CrossAxisAlignment.start,
-                      //         children: [
-                      //           Text('Numero'),
-                      //           Text('${userModel!.endereco}'),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //     SizedBox(width: 20),
-                      //     Expanded(
-                      //       child: Column(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         crossAxisAlignment: CrossAxisAlignment.start,
-                      //         children: [
-                      //           Text('Bairro'),
-                      //           Text('${userModel!.endereco}'),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(height: 20),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.start,
-                      //   crossAxisAlignment: CrossAxisAlignment.start,
-                      //   children: [
-                      //     Expanded(
-                      //       child: Column(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         crossAxisAlignment: CrossAxisAlignment.start,
-                      //         children: [
-                      //           Text('Complemento'),
-                      //           SizedBox(width: 20),
-                      //           Text('${userModel!.endereco}'),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
 
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       const Text(
                         'DADOS INSTITUIÇÃO',
                         style: TextStyle(
@@ -255,7 +187,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Instituição'),
+                                const Text('Instituição'),
                                 Text('${userModel!.instituicao}'),
                               ],
                             ),
@@ -266,30 +198,25 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Matricula:'),
+                                const Text('Matricula:'),
                                 Text('${userModel!.numeroMatriculaFaculdade}'),
                               ],
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('${userModel!.turno}'),
-                              ],
-                            ),
-                          ),
-                        ],
+                      const SizedBox(height: 20),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.zero,
+                        height: 50,
+                        child: ListView(
+                          shrinkWrap: true,
+                          children:
+                              userModel!.turno!.map((e) => Text('$e')).toList(),
+                        ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       // ANEXOS
                       const Text(
                         'ANEXOS',
@@ -410,7 +337,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                         var id = querySnapshot.docs.first.id;
                         firestore
                             .collection('users')
-                            .doc('$id')
+                            .doc(id)
                             .update({'ativo': true});
                       });
                       toastAviso('Cadastro confirmado', kSuccessColor, context);
@@ -432,7 +359,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                         var id = querySnapshot.docs.first.id;
                         firestore
                             .collection('users')
-                            .doc('$id')
+                            .doc(id)
                             .update({'ativo': false});
                       });
                       toastAviso('Cadastro recusado', kErrorColor, context);

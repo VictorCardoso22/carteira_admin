@@ -1,6 +1,5 @@
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class RoundedInputField extends StatelessWidget {
   final String? labelText;
@@ -46,7 +45,7 @@ class RoundedInputField extends StatelessWidget {
 
       decoration:  InputDecoration(
         labelText: labelText,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
               color: Theme.of(context).colorScheme.primary, width: 2),

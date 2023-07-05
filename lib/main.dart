@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
       title: 'Carteira de estudante',
       initialRoute: '/login',
       routes: {
-        '/login': (_) => LoginPage(),
-        '/home': (_) => AdminPage(),
+        '/login': (_) => const LoginPage(),
+        '/home': (_) => const AdminPage(),
         '/carteiras': (_) =>
             CarteirasPage(adminPageViewlModel: adminPageViewlModel!),
         '/cadastro': (_) => DadosPage(),

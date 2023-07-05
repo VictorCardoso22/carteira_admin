@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:admin/common_codes.dart';
 import 'package:admin/components/custom_primary_button.dart';
@@ -230,7 +229,7 @@ class _DadosPageState extends State<DadosPage> {
       } else if (e.code == "invalid-email") {
         toastAviso("Email invalido", Colors.red, context);
       }
-      print('${e.code}');
+      print(e.code);
     } catch (e) {
       print(e);
     }
@@ -305,10 +304,10 @@ class _DadosPageState extends State<DadosPage> {
   }
 
   Future<String> addUserImages({XFile? file, nameFile}) async {
-    final _firebaseStorage = FirebaseStorage.instance;
+    final firebaseStorage = FirebaseStorage.instance;
     User? user = FirebaseAuth.instance.currentUser;
     //Upload to Firebase
-    var snapshot = await _firebaseStorage
+    var snapshot = await firebaseStorage
         .ref()
         .child('${user!.uid}/$nameFile')
         .putData(await file!.readAsBytes());

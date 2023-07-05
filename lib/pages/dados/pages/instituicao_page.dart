@@ -6,13 +6,13 @@ class InstituicaoPage extends StatefulWidget {
   InstituicaoPage({Key? key}) : super(key: key);
 
   TextEditingController textEditingControllerInstituicaoDeEnsino =
-      new TextEditingController();
+      TextEditingController();
   TextEditingController textEditingControllerMatricula =
-      new TextEditingController();
+      TextEditingController();
   TextEditingController textEditingControllerTurno =
-      new TextEditingController();
+      TextEditingController();
   TextEditingController textEditingControllerCurso =
-      new TextEditingController();
+      TextEditingController();
 
   List<String> listTurno = [];
 
