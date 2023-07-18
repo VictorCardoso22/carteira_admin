@@ -1,5 +1,6 @@
 import 'package:admin/components/menu_sidebar.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
+import 'package:admin/pages/topo_page/topo_page.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -36,7 +37,7 @@ class _AdminPageState extends State<AdminPage> {
                 : null,
             body: Column(
               children: [
-                // TopoPage(),
+                 TopoPage(),
                 // MENU LATERAL
                 Flexible(
                   child: Row(

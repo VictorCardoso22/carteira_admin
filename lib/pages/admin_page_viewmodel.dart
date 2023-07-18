@@ -1,7 +1,11 @@
+import 'dart:html';
+
+import 'package:admin/common_codes.dart';
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/carterias/carteiras_page.dart';
 import 'package:admin/pages/dados/dados_page.dart';
 import 'package:admin/pages/home_page/home_page.dart';
+import 'package:admin/pages/login_page/login_page.dart';
 import 'package:admin/pages/registro_carteira/registro_carteira_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +48,8 @@ class AdminPageViewlModel extends BaseViewModel {
         return DadosPage();
       case 3:
         Future.delayed(Duration.zero, () {
-          Get.offAllNamed("/login");
+          window.localStorage.clear();
+          Navigator.of(baseContext).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage(), settings: RouteSettings(name: "/login")), (route) => false);
         });
         return Container();
 
