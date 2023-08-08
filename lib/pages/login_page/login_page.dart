@@ -107,15 +107,15 @@ class LoginPageState extends State<LoginPage> {
                             controller: passwordController,
                             onEditingComplete: trySignin,
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: const Text('Esqueci minha senha',
-                                  style: TextStyle(color: kPrimaryDarkColor)),
-                            ),
-                          ),
-                          const SizedBox(height: kMarginHalf),
+                          // Align(
+                          //   alignment: Alignment.centerRight,
+                          //   child: TextButton(
+                          //     onPressed: () {},
+                          //     child: const Text('Esqueci minha senha',
+                          //         style: TextStyle(color: kPrimaryDarkColor)),
+                          //   ),
+                          // ),
+                         const SizedBox(height: kMarginHalf),
                           isLoading
                               ? const Center(
                                   child: CircularProgressIndicator(),
@@ -186,7 +186,7 @@ class LoginPageState extends State<LoginPage> {
         toastAviso("Usuário ou senha incorretos", Colors.red, context);
         print('Wrong password provided for that user.');
       } else {
-        toastAviso("Ocorreu um erro", Colors.red, context);
+        toastAviso("Usuário ou senha incorretos", Colors.red, context);
       }
     }
   }
