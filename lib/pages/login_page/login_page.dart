@@ -26,7 +26,6 @@ class LoginPage extends StatefulWidget {
   State<StatefulWidget> createState() {
     return LoginPageState();
   }
-
 }
 
 /// State da tela de login
@@ -52,7 +51,7 @@ class LoginPageState extends State<LoginPage> {
         child: Container(
           color: kBackgroundLightColor,
           width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,7 +114,7 @@ class LoginPageState extends State<LoginPage> {
                           //         style: TextStyle(color: kPrimaryDarkColor)),
                           //   ),
                           // ),
-                         const SizedBox(height: kMarginHalf),
+                          const SizedBox(height: kMarginHalf),
                           isLoading
                               ? const Center(
                                   child: CircularProgressIndicator(),
@@ -180,7 +179,6 @@ class LoginPageState extends State<LoginPage> {
               email: usernameController.text.trimRight(),
               password: passwordController.text)
           .then((value) {
-
         // setPreferencesCredentials(widget.usernameController.text.trimRight(), widget.passwordController.text);
 
         getFirebaseData();
@@ -214,23 +212,26 @@ class LoginPageState extends State<LoginPage> {
 
         UserModel dataUser = UserModel.fromJson(documentSnapshot.data());
 
-          if(dataUser.admin){
+        if (dataUser.admin) {
+          //---------------------------Salva secao no browser---------------------//
+          String encryptedString = encryptString(
+              jsonEncode(dataUser.toJson())); // criptografa a sessao
+          window.localStorage["sessao_array"] =
+              encryptedString; // guarda no local storage
+          //---------------------------Salva secao no browser---------------------//
 
-            //---------------------------Salva secao no browser---------------------//
-            String encryptedString = encryptString(jsonEncode(dataUser.toJson())); // criptografa a sessao
-            window.localStorage["sessao_array"] = encryptedString; // guarda no local storage
-            //---------------------------Salva secao no browser---------------------//
-
-            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => AdminPage(), settings: RouteSettings(name: "/home")), (route) => false);
-
-          }else{
-            toastAviso("Usuário não possui permissão", Colors.red, context);
-          }
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => AdminPage(),
+                  settings: RouteSettings(name: "/home")),
+              (route) => false);
+        } else {
+          toastAviso("Usuário não possui permissão", Colors.red, context);
+        }
 
         setState(() {
           isLoading = false;
         });
-
       }
     });
   }

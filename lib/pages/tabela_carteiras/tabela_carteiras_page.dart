@@ -81,7 +81,11 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: SizedBox(
+          child: Container(
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width * 0.9,
+                minWidth: MediaQuery.of(context).size.width * 0.8),
+            // width: MediaQuery.of(context).size.width * 0.8,
             child: DataTable(
                 columnSpacing: 50,
                 columns: <DataColumn>[

@@ -1,13 +1,11 @@
 import 'dart:convert';
 import 'dart:html';
-import 'dart:js';
 
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/login_page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:encrypt/encrypt.dart' as sec;
-import 'package:get/get.dart';
 
 
 toastAviso(String aviso, Color color, BuildContext context) {

@@ -54,8 +54,8 @@ class HomePageState extends State<HomePage> {
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Wrap(
-              alignment: WrapAlignment.center,
-              runAlignment: WrapAlignment.center,
+              alignment: WrapAlignment.start,
+              runAlignment: WrapAlignment.start,
               crossAxisAlignment: WrapCrossAlignment.center,
               runSpacing: 10,
               children: [
