@@ -1,10 +1,14 @@
+import 'dart:convert';
+import 'dart:html';
+import 'dart:js';
+
 import 'package:admin/model/user.dart';
+import 'package:admin/pages/login_page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:encrypt/encrypt.dart' as sec;
+import 'package:get/get.dart';
 
-class DataUser {
-  static UserModel? dataUser;
-}
 
 toastAviso(String aviso, Color color, BuildContext context) {
   debugPrint(color.toHex());
@@ -37,12 +41,35 @@ extension HexColor on Color {
       '${blue.toRadixString(16).padLeft(2, '0')}';
 }
 
+encryptString(String text) {
+  final plainText = text;
+
+  final key = sec.Key.fromLength(16);
+  final iv = sec.IV.fromLength(16);
+  final encrypter = sec.Encrypter(sec.AES(key));
+
+  final encrypted = encrypter.encrypt(plainText, iv: iv);
+  // final decrypted = encrypter.decrypt(encrypted, iv: iv);
+
+  return encrypted.base64;
+}
+
+decryptString(String text) {
+  final key = sec.Key.fromLength(16);
+  final iv = sec.IV.fromLength(16);
+  final encrypter = sec.Encrypter(sec.AES(key));
+
+  final decrypted = encrypter.decrypt64(text, iv: iv);
+
+  return decrypted;
+}
+
 AlertDialog buildAlertDialog(
     {String? titulo,
     String? aceitar,
     String? cancelar,
     String? text,
-    VoidCallback? onPressedConfirma,
+    void Function()? onPressedConfirma,
     BuildContext? context}) {
   Widget cancelaButton;
   Widget publicaButton;
@@ -64,4 +91,19 @@ AlertDialog buildAlertDialog(
     ],
   );
   return alert;
+}
+
+UserModel? getDataUser(BuildContext context) {
+  var jsonDecoded;
+  UserModel? userModel;
+
+  try {
+    String jsonString = decryptString(window.localStorage["sessao_array"]!);
+    jsonDecoded = jsonDecode(jsonString);
+    userModel = UserModel.fromJson(jsonDecoded);
+  } catch(e){
+    debugPrint("aqui");// ta sem sessao
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage(), settings: RouteSettings(name: "/login")), (route) => false);
+  }
+  return userModel;
 }

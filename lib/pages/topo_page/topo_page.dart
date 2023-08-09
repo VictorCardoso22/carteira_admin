@@ -1,17 +1,35 @@
+import 'package:admin/common_codes.dart';
+import 'package:admin/components/menu_sidebar.dart';
+import 'package:admin/model/user.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:flutter/material.dart';
 
 class TopoPage extends StatefulWidget {
-  String? imagemPerfil;
-  String? nome;
 
-  TopoPage({Key? key, this.imagemPerfil, this.nome}) : super(key: key);
+
+  TopoPage({Key? key}) : super(key: key);
 
   @override
   State<TopoPage> createState() => _TopoPageState();
 }
 
 class _TopoPageState extends State<TopoPage> {
+  String? imagemPerfil = "";
+  String? nome = "";
+
+  @override
+  void initState() {
+
+    UserModel? dataUser = getDataUser(context);
+    if(dataUser != null){
+      imagemPerfil = dataUser.fotoAnexo;
+      nome = dataUser.nome;
+    }
+
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,8 +55,8 @@ class _TopoPageState extends State<TopoPage> {
           ),
           const SizedBox(width: 30),
           _personalInfo(
-            name: widget.nome,
-            imagePerfil: widget.imagemPerfil,
+            name: nome,
+            imagePerfil: imagemPerfil,
           )
         ],
       ),

@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:html';
+
 import 'package:admin/components/custom_primary_button.dart';
 import 'package:admin/components/rounded_input_field.dart';
 import 'package:admin/components/rounded_password_field.dart';
 import 'package:admin/model/user.dart';
+import 'package:admin/pages/admin_page.dart';
+import 'package:admin/pages/home_page/home_page.dart';
 import 'package:admin/ui/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,12 +20,13 @@ import '../../common_codes.dart';
 
 /// Tela de login
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  LoginPage({Key? key}) : super(key: UniqueKey());
 
   @override
   State<StatefulWidget> createState() {
     return LoginPageState();
   }
+
 }
 
 /// State da tela de login
@@ -32,6 +38,7 @@ class LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     initializeDefault();
+    window.localStorage.clear();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // do what you want here
     });
@@ -100,16 +107,15 @@ class LoginPageState extends State<LoginPage> {
                             controller: passwordController,
                             onEditingComplete: trySignin,
                           ),
-                          const SizedBox(height: 8),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: const Text('Esqueci minha senha',
-                                  style: TextStyle(color: kPrimaryDarkColor)),
-                            ),
-                          ),
-                          const SizedBox(height: 36),
+                          // Align(
+                          //   alignment: Alignment.centerRight,
+                          //   child: TextButton(
+                          //     onPressed: () {},
+                          //     child: const Text('Esqueci minha senha',
+                          //         style: TextStyle(color: kPrimaryDarkColor)),
+                          //   ),
+                          // ),
+                         const SizedBox(height: kMarginHalf),
                           isLoading
                               ? const Center(
                                   child: CircularProgressIndicator(),
@@ -174,6 +180,7 @@ class LoginPageState extends State<LoginPage> {
               email: usernameController.text.trimRight(),
               password: passwordController.text)
           .then((value) {
+
         // setPreferencesCredentials(widget.usernameController.text.trimRight(), widget.passwordController.text);
 
         getFirebaseData();
@@ -189,7 +196,7 @@ class LoginPageState extends State<LoginPage> {
         toastAviso("Usuário ou senha incorretos", Colors.red, context);
         print('Wrong password provided for that user.');
       } else {
-        toastAviso("Ocorreu um erro", Colors.red, context);
+        toastAviso("Usuário ou senha incorretos", Colors.red, context);
       }
     }
   }
@@ -204,9 +211,26 @@ class LoginPageState extends State<LoginPage> {
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         // print('Document data: ${documentSnapshot.data()}');
-        DataUser.dataUser = UserModel.fromJson(documentSnapshot.data());
-        //User //documentSnapshot.data();
-        Get.offAndToNamed('/home');
+
+        UserModel dataUser = UserModel.fromJson(documentSnapshot.data());
+
+          if(dataUser.admin){
+
+            //---------------------------Salva secao no browser---------------------//
+            String encryptedString = encryptString(jsonEncode(dataUser.toJson())); // criptografa a sessao
+            window.localStorage["sessao_array"] = encryptedString; // guarda no local storage
+            //---------------------------Salva secao no browser---------------------//
+
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => AdminPage(), settings: RouteSettings(name: "/home")), (route) => false);
+
+          }else{
+            toastAviso("Usuário não possui permissão", Colors.red, context);
+          }
+
+        setState(() {
+          isLoading = false;
+        });
+
       }
     });
   }

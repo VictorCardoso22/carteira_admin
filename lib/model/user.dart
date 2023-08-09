@@ -30,6 +30,7 @@ class UserModel {
     this.ativo,
     this.timeStampCriacao,
     this.validade,
+    this.admin = false,
   });
 
   UserModel.fromJson(dynamic json) {
@@ -53,6 +54,7 @@ class UserModel {
     ativo = json['ativo'];
     timeStampCriacao = json['timeStampCriacao'];
     validade = json['validade'];
+    admin = json['admin'] ?? false;
   }
 
   String? cpf;
@@ -73,8 +75,10 @@ class UserModel {
   String? instituicao;
   List? turno;
   bool? ativo;
+  bool admin = false;
   String? timeStampCriacao;
   String? validade;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -82,7 +86,6 @@ class UserModel {
     map['dataNascimento'] = dataNascimento;
     map['email'] = email;
     map['endereco'] = endereco;
-
     map['nome'] = nome;
     map['nomeCompleto'] = nomeCompleto;
     map['numeroMatriculaFaculdade'] = numeroMatriculaFaculdade;
@@ -98,6 +101,7 @@ class UserModel {
     map['ativo'] = ativo;
     map['timeStampCriacao'] = timeStampCriacao;
     map['validade'] = validade;
+    map['admin'] = admin;
 
     return map;
   }
