@@ -2,11 +2,10 @@ import 'package:admin/common_codes.dart';
 import 'package:admin/components/menu_sidebar.dart';
 import 'package:admin/model/user.dart';
 import 'package:admin/ui/colors.dart';
+import 'package:admin/ui/text_style.dart';
 import 'package:flutter/material.dart';
 
 class TopoPage extends StatefulWidget {
-
-
   TopoPage({Key? key}) : super(key: key);
 
   @override
@@ -19,13 +18,11 @@ class _TopoPageState extends State<TopoPage> {
 
   @override
   void initState() {
-
     UserModel? dataUser = getDataUser(context);
-    if(dataUser != null){
+    if (dataUser != null) {
       imagemPerfil = dataUser.fotoAnexo;
       nome = dataUser.nome;
     }
-
 
     super.initState();
   }
@@ -35,6 +32,7 @@ class _TopoPageState extends State<TopoPage> {
     return Container(
       height: 70,
       margin: EdgeInsets.zero,
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -84,20 +82,15 @@ class _TopoPageState extends State<TopoPage> {
     String? imagePerfil,
     String? name,
   }) {
-    String? name0 = name;
-
     return Row(
       children: [
-        Container(
-            child: Text(
-          name0!,
-        )),
+        Container(child: Text(name!, style: kHeading6)),
         const SizedBox(width: 18),
         SizedBox(
           height: 55,
           width: 55,
           child: Stack(
-            fit: StackFit.expand,
+            fit: StackFit.loose,
             children: [
               CircleAvatar(
                 backgroundImage: NetworkImage(imagePerfil.toString()),

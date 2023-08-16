@@ -47,11 +47,11 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: kBackgroundLightColor,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+      body: Container(
+        color: kBackgroundLightColor,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,8 +79,8 @@ class LoginPageState extends State<LoginPage> {
                   ),
                   constraints: const BoxConstraints(
                     minWidth: 300.0,
-                    maxWidth: 380.0,
-                    maxHeight: 400,
+                    maxWidth: 340.0,
+                    maxHeight: 360,
                   ),
                   child: Form(
                     child: AutofillGroup(

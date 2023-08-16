@@ -50,9 +50,6 @@ class CustomPrimaryButton extends StatelessWidget {
       "elevation": MaterialStatePropertyAll(4.0),
     },
   };
-  //  MaterialStateProperty.all<Color>(
-  //             Colors.transparent), // Defina a cor desejada aqui
-  //       )
 
   get backgroundColor => _config[_type]!['backgroundColor'];
   get textStyle => _config[_type]!['textStyle'];
@@ -62,24 +59,6 @@ class CustomPrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return InkWell(
-    //   onTap: _onPressed,
-    //   child: Container(
-    //     decoration: BoxDecoration(
-    //       color: backgroundColor,
-    //       borderRadius: BorderRadius.circular(4),
-    //       border: border,
-    //     ),
-    //     width: _small == false ? 328 : 153,
-    //     height: sizeHeight,
-    //     child: Center(
-    //       child: Text(
-    //         _titulo,
-    //         style: textStyle,
-    //       ),
-    //     ),
-    //   ),
-    // );
     return SizedBox(
       width: _small == false ? 328 : 153,
       height: sizeHeight,

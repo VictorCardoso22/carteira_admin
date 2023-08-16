@@ -1,3 +1,4 @@
+import 'dart:js_util';
 import 'dart:math';
 
 import 'dart:html';
@@ -32,6 +33,10 @@ class AdminPageViewlModel extends BaseViewModel {
   int ativos = 0;
   int inativos = 0;
 
+  int matutino = 0;
+  int vespertino = 0;
+  int noturno = 0;
+
   HomePage? homePage;
   CarteirasPage? carteirasPage;
 
@@ -51,7 +56,11 @@ class AdminPageViewlModel extends BaseViewModel {
       case 3:
         Future.delayed(Duration.zero, () {
           window.localStorage.clear();
-          Navigator.of(baseContext).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage(), settings: RouteSettings(name: "/login")), (route) => false);
+          Navigator.of(baseContext).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                  settings: RouteSettings(name: "/login")),
+              (route) => false);
         });
         return Container();
 
@@ -75,6 +84,13 @@ class AdminPageViewlModel extends BaseViewModel {
     listOfAlunosInativos.clear();
     ativos = 0;
     inativos = 0;
+    listOfAlunosMatutino.clear();
+    listOfAlunosVespertino.clear();
+    listOfAlunosNoturno.clear();
+
+    matutino = 0;
+    vespertino = 0;
+    noturno = 0;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore
         .collection('users')
@@ -96,12 +112,15 @@ class AdminPageViewlModel extends BaseViewModel {
             for (var element in userModel.turno!) {
               if (element == "matutino") {
                 listOfAlunosMatutino.add(userModel);
+                matutino++;
               }
               if (element == "vespertino") {
                 listOfAlunosVespertino.add(userModel);
+                vespertino++;
               }
               if (element == "noturno") {
                 listOfAlunosNoturno.add(userModel);
+                noturno++;
               }
             }
           } catch (e) {
@@ -121,9 +140,7 @@ class AdminPageViewlModel extends BaseViewModel {
       listOfAlunosInativos = listOfAlunosInativos.reversed.toList();
       // listFiltradaNome = listFiltradaNome.reversed.toList();
 
-      print(listOfAlunosMatutino.length);
-      print(listOfAlunosVespertino.length);
-      print(listOfAlunosNoturno.length);
+      notifyListeners();
     });
   }
 }

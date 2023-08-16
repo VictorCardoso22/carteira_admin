@@ -8,7 +8,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 240,
+      width: 200,
       height: 80,
       // padding: EdgeInsets.symmetric(vertical: 16),
       child: Card(

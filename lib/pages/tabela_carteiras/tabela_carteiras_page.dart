@@ -31,7 +31,7 @@ class _TabelaCarteirasPageState extends State<TabelaCarteirasPage> {
 
   @override
   void initState() {
-    widget.adminPageViewlModel.getAlunos();
+    // widget.adminPageViewlModel.getAlunos();
 
     super.initState();
   }
