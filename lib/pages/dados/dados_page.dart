@@ -1,6 +1,7 @@
 
 import 'package:admin/common_codes.dart';
 import 'package:admin/components/custom_primary_button.dart';
+import 'package:admin/model/endereco.dart';
 import 'package:admin/model/user.dart';
 import 'package:admin/pages/admin_page_viewmodel.dart';
 import 'package:admin/pages/dados/pages/anexo_page.dart';
@@ -250,12 +251,20 @@ class _DadosPageState extends State<DadosPage> {
     userModel.rg = widget.dadosPessoaisPage!.textEditingControllerRg.text;
     userModel.dataNascimento =
         widget.dadosPessoaisPage!.textEditingControllerDataNascimento.text;
-    userModel.endereco = """ 
-    Logradouro: ${widget.dadosPessoaisPage!.textEditingControllerLogradouro.text} 
-    Bairro: ${widget.dadosPessoaisPage!.textEditingControllerBairro.text}
-    Número: ${widget.dadosPessoaisPage!.textEditingControllerNumeroEndereco.text}
-    Complemento: ${widget.dadosPessoaisPage!.textEditingControllerComplemento.text}
-    """;
+    // userModel.endereco = """
+    // Logradouro: ${widget.dadosPessoaisPage!.textEditingControllerLogradouro.text}
+    // Bairro: ${widget.dadosPessoaisPage!.textEditingControllerBairro.text}
+    // Número: ${widget.dadosPessoaisPage!.textEditingControllerNumeroEndereco.text}
+    // Complemento: ${widget.dadosPessoaisPage!.textEditingControllerComplemento.text}
+    // """;
+
+    String cep = widget.dadosPessoaisPage!.textEditingControllerCep.text;
+    userModel.endereco = Endereco(cep: widget.dadosPessoaisPage!.maskFormatterCEP.unmaskText(cep),
+        logradouro: '${widget.dadosPessoaisPage!.textEditingControllerLogradouro.text}',
+        bairro: '${widget.dadosPessoaisPage!.textEditingControllerBairro.text}',
+        numero: '${widget.dadosPessoaisPage!.textEditingControllerNumeroEndereco.text}',
+        complemento: '${widget.dadosPessoaisPage!.textEditingControllerComplemento.text}'
+    );
 
     ///--------------------------------------------------------------------------------------------------///
 

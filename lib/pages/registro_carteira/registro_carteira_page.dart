@@ -164,7 +164,7 @@ class _RegistroCarteiraPageState extends State<RegistroCarteiraPage> {
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.zero,
                         child: Text(
-                          '${userModel!.endereco}',
+                          '${userModel!.endereco!.toJson()}',
                           textAlign: TextAlign.left,
                         ),
                       ),
